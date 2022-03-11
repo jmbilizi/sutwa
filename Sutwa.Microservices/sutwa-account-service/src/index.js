@@ -33,7 +33,7 @@ const start = async () => {
   }
 
   https.createServer(certOptions, app).listen(port, () => {
-    console.log(`Auth API is running on port ${port}`);
+    console.log(`Sutwa Account Service is running on port ${port}`);
   });
 };
 
