@@ -10,8 +10,8 @@ const port = process.env.PORT || 3000;
 
 //localhost https certification keys
 var certOptions = {
-  key: fs.readFileSync(path.resolve("cert/server.key")),
-  cert: fs.readFileSync(path.resolve("cert/server.crt")),
+  key: fs.readFileSync(path.resolve("../cert/server.key")),
+  cert: fs.readFileSync(path.resolve("../cert/server.crt")),
 };
 
 const start = async () => {
