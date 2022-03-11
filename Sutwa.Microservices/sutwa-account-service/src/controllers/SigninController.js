@@ -1,6 +1,6 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { BadRequestError } = require("../errors/bad-request-error");
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import { BadRequestError } from "../errors/bad-request-error.js";
 
 const SigninController = async (req, res, next) => {
   const password = req.body.password;
@@ -59,4 +59,4 @@ const SigninController = async (req, res, next) => {
   });
 };
 
-module.exports = SigninController;
+export default SigninController;

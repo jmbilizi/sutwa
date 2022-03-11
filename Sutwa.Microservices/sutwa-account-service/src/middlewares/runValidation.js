@@ -1,4 +1,4 @@
-const { validationResult } = require("express-validator");
+import { validationResult } from "express-validator";
 
 const runValidation = (req, res, next) => {
   const errors = validationResult(req);
@@ -10,4 +10,4 @@ const runValidation = (req, res, next) => {
   next();
 };
 
-module.exports = runValidation;
+export { runValidation };

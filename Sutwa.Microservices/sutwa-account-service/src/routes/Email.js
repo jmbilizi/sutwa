@@ -1,17 +1,13 @@
-//input or body validation tools
-const { check } = require("express-validator");
-const runValidation = require("../middlewares/runValidation");
-//Express package and Router
-const express = require("express");
-const router = express.Router();
-
-const {
+import { check } from "express-validator";
+import { runValidation } from "../middlewares/runValidation.js";
+import { Router } from "express";
+import {
   AddEmail,
   VerifyEmail,
   UpdateEmail,
   CheckEmailStatus,
-} = require("../controllers/Email");
-
+} from "../controllers/Email";
+const router = Router();
 //create
 router.post(
   "/email",
@@ -53,4 +49,4 @@ router.put(
 //check status
 router.get("/email/status/:email", CheckEmailStatus);
 
-module.exports = router;
+export default router;

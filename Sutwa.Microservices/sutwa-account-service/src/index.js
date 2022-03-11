@@ -1,17 +1,17 @@
-const mongoose = require("mongoose");
-const app = require("./app");
-require("dotenv").config();
-const https = require("https");
-const path = require("path");
-const fs = require("fs");
-
+import mongoose from "mongoose";
+import app from "./app.js";
+import { createServer } from "https";
+import { resolve } from "path";
+import { readFileSync } from "fs";
+import * as dotenv from "dotenv";
+dotenv.config();
 // Port that the webserver listens to
 const port = process.env.PORT || 3000;
 
 //localhost https certification keys
 var certOptions = {
-  key: fs.readFileSync(path.resolve("../../cert/server.key")),
-  cert: fs.readFileSync(path.resolve("../../cert/server.crt")),
+  key: readFileSync(resolve("../../cert/server.key")),
+  cert: readFileSync(resolve("../../cert/server.crt")),
 };
 
 const start = async () => {
@@ -32,7 +32,7 @@ const start = async () => {
       .catch((err) => console.log("DB CONNECTION ERROR: ", err));
   }
 
-  https.createServer(certOptions, app).listen(port, () => {
+  createServer(certOptions, app).listen(port, () => {
     console.log(`Sutwa Account Service is running on port ${port}`);
   });
 };

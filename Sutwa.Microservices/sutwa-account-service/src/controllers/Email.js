@@ -1,9 +1,6 @@
-//database schema
-const Email = require("../models/Email");
-const User = require("../models/User");
-
-//Email verification
-const { sendEmailVerificationCode, verifyEmail } = require("./Twilio");
+import Email from "../models/Email";
+import User from "../models/User";
+import { sendEmailVerificationCode, verifyEmail } from "./Twilio";
 
 //add email
 exports.AddEmail = async (req, res) => {

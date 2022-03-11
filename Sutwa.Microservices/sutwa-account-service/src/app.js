@@ -1,33 +1,30 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const { json } = require("body-parser");
-const cookieParser = require("cookie-parser");
-const cookieSession = require("cookie-session");
-const _ = require("lodash");
-require("dotenv").config();
-const app = express();
-
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import cookieSession from "cookie-session";
+import _ from "lodash";
 //custom errors and error handler
-const { errorHandler } = require("./middlewares/error-handler");
-const { NotFoundError } = require("./errors/not-found-error");
-
+import { errorHandler } from "./middlewares/error-handler.js";
+import { NotFoundError } from "./errors/not-found-error.js";
 // import routes
-const currentuserRouter = require("./routes/current-user");
+import currentuserRouter from "./routes/current-user.js";
 //const phoneRouter = require("./routes/Phone");
 //const emailRouter = require("./routes/Email");
-const signupRouter = require("./routes/signup");
-const signinRouter = require("./routes/signin");
-const signoutRouter = require("./routes/signout");
-
+import signupRouter from "./routes/signup.js";
+import signinRouter from "./routes/signin.js";
+import signoutRouter from "./routes/signout.js";
 // const accountActivationRouter = require("./routes/account-activation");
 // const googleLoginRouter = require("./routes/google-login");
 // const facebookLoginRouter = require("./routes/facebook-login");
 // const resetPasswordRouter = require("./routes/reset-password");
 
+const app = express();
+
 //middleware
 app.use(morgan("dev"));
-app.use(json());
+app.use(bodyParser.json());
 app.set("trust proxy", true);
 app.use(cookieParser());
 app.use(
@@ -63,4 +60,4 @@ app.all("*", async (req, res, next) => {
 
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

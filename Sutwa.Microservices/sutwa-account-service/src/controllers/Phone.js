@@ -1,8 +1,5 @@
-//database schema
-const Phone = require("../models/Phone");
-
-//Phone verification
-const { sendPhoneVerificationCode, verifyPhone } = require("./Twilio");
+import Phone from "../models/Phone";
+import { sendPhoneVerificationCode, verifyPhone } from "./Twilio";
 
 exports.AddPhone = async (req, res) => {
   const { authID, phone, verificationMethod } = req.body;

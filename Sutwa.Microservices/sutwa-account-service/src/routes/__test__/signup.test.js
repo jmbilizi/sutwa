@@ -1,8 +1,7 @@
-const request = require("supertest");
-const app = require("../../app");
-const { connect, close, clear } = require("../../dbTestSetup");
-// Pass supertest agent for each test
-const agent = request.agent(app);
+import request from "supertest";
+import app from "../../app";
+import { connect, close, clear } from "../../dbTestSetup";
+const agent = request.agent(app.default);
 
 // Setup connection to the database
 beforeAll(async () => await connect());

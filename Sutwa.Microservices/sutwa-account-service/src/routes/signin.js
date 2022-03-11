@@ -1,8 +1,8 @@
-const { check } = require("express-validator");
-const runValidation = require("../middlewares/runValidation");
-const express = require("express");
+import { check } from "express-validator";
+import { runValidation } from "../middlewares/runValidation.js";
+import express from "express";
+import SigninController from "../controllers/SigninController.js";
 const router = express.Router();
-const SigninController = require("../controllers/SigninController");
 
 router.post(
   "/signin",
@@ -17,4 +17,4 @@ router.post(
   SigninController
 );
 
-module.exports = router;
+export default router;

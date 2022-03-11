@@ -1,6 +1,6 @@
-const { NotAuthorizedError } = require("../errors/not-authorized-error");
+import { NotAuthorizedError } from "../errors/not-authorized-error.js";
 
-exports.requireAuth = (req, res, next) => {
+const requireAuth = (req, res, next) => {
   //check if currentUser exist
   if (!req.currentUser) {
     const err = new NotAuthorizedError();
@@ -8,3 +8,5 @@ exports.requireAuth = (req, res, next) => {
   }
   next();
 };
+
+export { requireAuth };

@@ -1,8 +1,8 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { check } = require("express-validator");
-const runValidation = require("../middlewares/runValidation");
-const express = require("express");
+import User from "../models/User";
+import jwt from "jsonwebtoken";
+import { check } from "express-validator";
+import { runValidation } from "../middlewares/runValidation";
+import express from "express";
 const router = express.Router();
 
 router.put(
@@ -60,4 +60,4 @@ router.put(
   }
 );
 
-module.exports = router;
+export default router;

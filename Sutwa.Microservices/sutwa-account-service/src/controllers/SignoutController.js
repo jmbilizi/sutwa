@@ -5,4 +5,4 @@ const SignoutController = (req, res) => {
   });
 };
 
-module.exports = SignoutController;
+export default SignoutController;

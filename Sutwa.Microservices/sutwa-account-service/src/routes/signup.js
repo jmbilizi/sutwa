@@ -1,10 +1,9 @@
-const { check, oneOf } = require("express-validator");
-const runValidation = require("../middlewares/runValidation");
-const express = require("express");
+import { check, oneOf } from "express-validator";
+import { runValidation } from "../middlewares/runValidation.js";
+import express from "express";
+import User from "../models/User.js";
+import SignupController from "../controllers/SignupController.js";
 const router = express.Router();
-
-const User = require("../models/User");
-const SignupController = require("../controllers/SignupController");
 
 router.post(
   "/signup",
@@ -97,4 +96,4 @@ router.post(
   SignupController
 );
 
-module.exports = router;
+export default router;

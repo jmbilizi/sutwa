@@ -1,9 +1,11 @@
-const { CustomError } = require("./custom-error");
+import { CustomError } from "./custom-error.js";
 
-exports.NotFoundError = class extends CustomError {
+const NotFoundError = class extends CustomError {
   constructor(path) {
     super();
     this.statusCode = 404;
     this.message = `Page ${path}, Not Found.`;
   }
 };
+
+export { NotFoundError };

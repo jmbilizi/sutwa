@@ -1,10 +1,6 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-//Phone verification
-const {
-  sendPhoneVerificationCode,
-  sendEmailVerificationCode,
-} = require("./Twilio");
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import { sendPhoneVerificationCode, sendEmailVerificationCode } from "./Twilio.js";
 
 const SignupController = async (req, res, next) => {
   const { name, dateOfBirth, gender, sutwaID, password } = req.body;
@@ -52,7 +48,7 @@ const SignupController = async (req, res, next) => {
   });
 };
 
-module.exports = SignupController;
+export default SignupController;
 
 // async function sutwaIdSuggestion(name) {
 //   //create sutwa ID

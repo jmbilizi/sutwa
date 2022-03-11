@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
+import SignoutController from "../controllers/SignoutController.js";
 const router = express.Router();
-const SignoutController = require("../controllers/SignoutController");
 
 router.post("/signout", SignoutController);
 
-module.exports = router;
+export default router;

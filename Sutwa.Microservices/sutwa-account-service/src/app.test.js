@@ -1,8 +1,8 @@
-const request = require("supertest");
-const app = require("./app");
+import { agent as _agent } from "supertest";
+import app from "./app";
 
 // Pass supertest agent for each test
-const agent = request.agent(app);
+const agent = _agent(app.default);
 
 describe("POST/GET/PUT/DELETE *", () => {
   it("Should return 200 status", async () => {

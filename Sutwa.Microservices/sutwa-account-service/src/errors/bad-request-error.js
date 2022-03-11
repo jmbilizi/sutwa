@@ -1,9 +1,11 @@
-const { CustomError } = require("./custom-error");
+import { CustomError } from "./custom-error.js";
 
-exports.BadRequestError = class extends CustomError {
+const BadRequestError = class extends CustomError {
   constructor(message) {
     super();
     this.statusCode = 400;
     this.message = message;
   }
 };
+
+export { BadRequestError };

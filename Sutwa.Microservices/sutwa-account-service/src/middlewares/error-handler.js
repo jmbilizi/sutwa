@@ -1,6 +1,6 @@
-const { CustomError } = require("../errors/custom-error");
+import { CustomError } from "../errors/custom-error.js";
 
-exports.errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).json({ error: { message: err.message } });
   }
@@ -10,3 +10,5 @@ exports.errorHandler = (err, req, res, next) => {
     },
   });
 };
+
+export { errorHandler };

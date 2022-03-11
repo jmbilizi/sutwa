@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-exports.currentUser = (req, res, next) => {
+const currentUser = (req, res, next) => {
   //check if session or session with token exist
   if (!req.session?.token) {
     return next();
@@ -13,3 +13,5 @@ exports.currentUser = (req, res, next) => {
 
   next();
 };
+
+export { currentUser };

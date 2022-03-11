@@ -15,4 +15,4 @@ const sutwaIDSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("SutwaID", sutwaIDSchema);
+export default mongoose.model("SutwaID", sutwaIDSchema);

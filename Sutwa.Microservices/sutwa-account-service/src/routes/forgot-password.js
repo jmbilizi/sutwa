@@ -1,15 +1,13 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-// sendgrid
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-const { check } = require("express-validator");
-const runValidation = require("../middlewares/runValidation");
-const express = require("express");
+import User from "../models/User";
+import jwt from "jsonwebtoken";
+import { check } from "express-validator";
+import { runValidation } from "../middlewares/runValidation";
+import express from "express";
+import sgMail from "@sendgrid/mail";
 const router = express.Router();
 
-// forgot reset password
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 router.put(
   "/forgot-password",
   [
@@ -78,4 +76,4 @@ router.put(
   }
 );
 
-module.exports = router;
+export default router;
