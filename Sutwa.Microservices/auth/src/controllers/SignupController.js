@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const {
   sendPhoneVerificationCode,
   sendEmailVerificationCode,
-} = require("../controllers/Twilio");
+} = require("./Twilio");
 
 const SignupController = async (req, res, next) => {
   const { name, dateOfBirth, gender, sutwaID, password } = req.body;

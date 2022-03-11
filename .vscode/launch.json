@@ -8,7 +8,7 @@
       "name": "Launch via npm",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/auth",
+      "cwd": "${workspaceFolder}/Sutwa.Microservices/auth",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run-script",
