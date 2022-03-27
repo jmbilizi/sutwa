@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import uuid from "uuid";
 import crypto from "crypto";
-const { uuidv1 } = uuid;
+import { v1 as uuidv1 } from "uuid";
 
 const Schema = mongoose.Schema;
 
@@ -75,10 +74,11 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    hashed_password: {
+    hashedPassword: {
       type: String,
       required: true,
     },
+    saltPassword: String,
     resetPasswordLink: {
       data: String,
       default: "",
@@ -88,7 +88,6 @@ const userSchema = new Schema(
       trim: true,
       default: "subscriber",
     },
-    salt: String,
   },
   { timestamps: true }
 );
@@ -118,8 +117,8 @@ userSchema
   .virtual("password")
   .set(function (password) {
     this._password = password;
-    this.salt = uuidv1();
-    this.hashed_password = this.encryptPassword(password);
+    this.saltPassword = uuidv1();
+    this.hashedPassword = this.encryptPassword(password);
   })
   .get(function () {
     return this._password;
@@ -128,13 +127,13 @@ userSchema
 // methods
 userSchema.methods = {
   authenticate: function (plainText) {
-    return this.encryptPassword(plainText) === this.hashed_password; // true false
+    return this.encryptPassword(plainText) === this.hashedPassword; // true false
   },
   encryptPassword: function (password) {
     if (!password) return "";
     try {
       return crypto
-        .createHmac("sha1", this.salt)
+        .createHmac("sha1", this.saltPassword)
         .update(password)
         .digest("hex");
     } catch (err) {

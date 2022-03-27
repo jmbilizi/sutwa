@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch via npm",
+      "name": "sutwa-account-service",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}/Sutwa.Microservices/sutwa-account-service",
@@ -14,6 +14,12 @@
         "run-script",
         "debug"
       ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug All",
+      "configurations": ["sutwa-account-service"]
     }
   ]
 }

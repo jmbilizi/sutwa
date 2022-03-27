@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
-import _ from "lodash";
+import * as _ from "lodash";
 //custom errors and error handler
 import { errorHandler } from "./middlewares/error-handler.js";
 import { NotFoundError } from "./errors/not-found-error.js";
@@ -15,10 +15,10 @@ import currentuserRouter from "./routes/current-user.js";
 import signupRouter from "./routes/signup.js";
 import signinRouter from "./routes/signin.js";
 import signoutRouter from "./routes/signout.js";
+import resetPasswordRouter from "./routes/reset-password.js";
 // const accountActivationRouter = require("./routes/account-activation");
 // const googleLoginRouter = require("./routes/google-login");
 // const facebookLoginRouter = require("./routes/facebook-login");
-// const resetPasswordRouter = require("./routes/reset-password");
 
 const app = express();
 
@@ -44,10 +44,10 @@ app.use(signupRouter);
 app.use(signinRouter);
 app.use(currentuserRouter);
 app.use(signoutRouter);
+app.use(resetPasswordRouter);
 // app.use(accountActivationRouter);
 // app.use(googleLoginRouter);
 // app.use(facebookLoginRouter);
-// app.use(resetPasswordRouter);
 
 app.get("/", (req, res) =>
   res.status(200).send("Welcome to sutwa.com Auth API")

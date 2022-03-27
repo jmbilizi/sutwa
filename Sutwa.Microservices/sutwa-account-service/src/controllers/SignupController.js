@@ -1,6 +1,10 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import { sendPhoneVerificationCode, sendEmailVerificationCode } from "./Twilio.js";
+import {
+  sendPhoneVerificationCode,
+  sendEmailVerificationCode,
+} from "./Twilio.js";
+import { ServerError } from "../errors/_index.js";
 
 const SignupController = async (req, res, next) => {
   const { name, dateOfBirth, gender, sutwaID, password } = req.body;
@@ -27,11 +31,10 @@ const SignupController = async (req, res, next) => {
 
   const newUser = await new User(data);
 
-  newUser.save(async (err, user) => {
-    if (err) {
-      return res.status(500).json({
-        error: "Failed to save data into the database. Try signup again!",
-      });
+  newUser.save(async (error, user) => {
+    if (error) {
+      const serverError = new ServerError();
+      return serverError;
     }
     // generate a token and send to client
     const token = await jwt.sign(
@@ -41,10 +44,13 @@ const SignupController = async (req, res, next) => {
         expiresIn: "1h",
       }
     );
+
     // Store it on session object
     req.session = { token };
 
-    next();
+    return res.status(200).json({
+      message: `Welcome ${user.name}, you are successfully signed in!`,
+    });
   });
 };
 

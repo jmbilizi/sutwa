@@ -100,13 +100,13 @@ exports.CheckPhoneStatus = async (req, res) => {
     });
   }
 
-  if (existingPhone && existingPhone.verified == false) {
+  if (existingPhone && existingPhone.verified === false) {
     return res.status(201).json({
       message: "unverified",
     });
   }
 
-  if (existingPhone && existingPhone.verified == true) {
+  if (existingPhone && existingPhone.verified === true) {
     return res.status(200).json({
       message: "verified",
     });

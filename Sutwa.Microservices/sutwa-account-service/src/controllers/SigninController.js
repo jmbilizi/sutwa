@@ -23,10 +23,8 @@ const SigninController = async (req, res, next) => {
   );
 
   if (existing.every(isNullOrUndefined)) {
-    next(err);
+    return next(err);
   }
-
-  //find the element of the existing credential that is not null and use it to get authID
   // Check if element is not undefined && not null
   const isNotNullNorUndefined = (element) => {
     return typeof element !== "undefined" && element !== null;
@@ -34,12 +32,12 @@ const SigninController = async (req, res, next) => {
   const user = await existing.find(isNotNullNorUndefined);
 
   if (!user) {
-    next(err);
+    return next(err);
   }
 
   // authenticate
   if (!user.authenticate(password)) {
-    next(err);
+    return next(err);
   }
 
   // generate a token and send to client
@@ -54,7 +52,7 @@ const SigninController = async (req, res, next) => {
   // Store it on session object
   req.session = await { token };
 
-  res.status(200).json({
+  return res.status(200).json({
     message: `Welcome back ${user.name}, you are successfully signed in!`,
   });
 };
