@@ -1,8 +1,11 @@
 import { check } from "express-validator";
-import { runValidation } from "../middlewares/runValidation.js";
+import {
+  currentUser,
+  requireAuth,
+  runValidation,
+} from "../middlewares/_index.js";
 import { ResetPassword } from "../controllers/Reset-password.js";
-import { currentUser } from "../middlewares/current-user.js";
-import { requireAuth } from "../middlewares/require-auth.js";
+
 import express from "express";
 const router = express.Router();
 

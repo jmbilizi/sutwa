@@ -38,7 +38,12 @@ const SignupController = async (req, res, next) => {
     }
     // generate a token and send to client
     const token = await jwt.sign(
-      { id: user._id, sutwaID: user.sutwaID, name: user.name },
+      {
+        id: user._id,
+        sutwaID: user.sutwaID,
+        name: user.name,
+        verified: user.verified,
+      },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",

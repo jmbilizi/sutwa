@@ -1,8 +1,8 @@
-import { NotAuthorizedError } from "../errors/not-authorized-error.js";
+import { NotAuthenticatedError } from "../errors/_index.js";
 
 const requireAuth = (req, res, next) => {
   if (!req.currentUser) {
-    const err = new NotAuthorizedError();
+    const err = new NotAuthenticatedError();
     return next(err);
   }
   next();

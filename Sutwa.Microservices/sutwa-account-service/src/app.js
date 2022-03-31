@@ -6,8 +6,7 @@ import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
 import * as _ from "lodash";
 //custom errors and error handler
-import { errorHandler } from "./middlewares/error-handler.js";
-import { NotFoundError } from "./errors/not-found-error.js";
+import { NotFoundError, errorHandler } from "./errors/_index.js";
 // import routes
 import currentuserRouter from "./routes/current-user.js";
 //const phoneRouter = require("./routes/Phone");
