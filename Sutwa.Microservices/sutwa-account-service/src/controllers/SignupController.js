@@ -54,7 +54,7 @@ const SignupController = async (req, res, next) => {
     req.session = { token };
 
     return res.status(200).json({
-      message: `Welcome ${user.name}, you are successfully signed in!`,
+      message: `Welcome ${user.name}, you have successfully signed up!`,
     });
   });
 };

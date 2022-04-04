@@ -1,4 +1,4 @@
-import Phone from "../models/Phone";
+import Phone from "../models/User.js";
 import { sendPhoneVerificationCode, verifyPhone } from "./Twilio";
 
 exports.AddPhone = async (req, res) => {

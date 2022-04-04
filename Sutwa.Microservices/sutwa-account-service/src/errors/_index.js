@@ -4,6 +4,7 @@ import { NotFoundError } from "./not-found-error.js";
 import { NotAuthorizedError } from "./not-authorized-error.js";
 import { NotAuthenticatedError } from "./not-authenticated-error.js";
 import { CustomError } from "./custom-error.js";
+import { errorHandler } from "./error-handler.js";
 
 export {
   BadRequestError,
@@ -12,4 +13,5 @@ export {
   NotAuthorizedError,
   NotAuthenticatedError,
   CustomError,
+  errorHandler,
 };

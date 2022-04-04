@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { currentUser } from "../middlewares/current-user.js";
+import { currentUser } from "../controllers/current-user.js";
+import { requireAuthentication } from "../middlewares/_index.js";
 const router = Router();
 
-router.get("/currentuser", currentUser, (req, res) => {
-  return res.status(200).json({ currentUser: req.currentUser || null });
-});
+router.get("/currentuser", requireAuthentication, currentUser);
 
 export default router;

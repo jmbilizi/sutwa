@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
-import * as _ from "lodash";
+import _ from "lodash";
 //custom errors and error handler
 import { NotFoundError, errorHandler } from "./errors/_index.js";
 // import routes

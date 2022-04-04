@@ -1,12 +1,11 @@
-import Email from "../models/Email";
-import User from "../models/User";
+import Email from "../models/User.js";
 import { sendEmailVerificationCode, verifyEmail } from "./Twilio";
 
 //add email
 exports.AddEmail = async (req, res) => {
   const { email } = req.body;
 
-  const existingEmail = await User.findOne({ "email.address": email });
+  const existingEmail = await Email.findOne({ email });
 
   if (existingEmail) {
     return res.status(400).json({
@@ -29,7 +28,7 @@ exports.AddEmail = async (req, res) => {
 exports.VerifyEmail = async (req, res) => {
   const { email, code } = req.body;
 
-  const existingEmail = await User.findOne({ "email.address": email });
+  const existingEmail = await Email.findOne({ email });
 
   if (!existingEmail) {
     return res.status(404).json({
@@ -99,13 +98,13 @@ exports.CheckEmailStatus = async (req, res) => {
     });
   }
 
-  if (existingEmail && existingEmail.verified == false) {
+  if (existingEmail && !existingEmail.verified) {
     return res.status(201).json({
       message: "unverified",
     });
   }
 
-  if (existingEmail && existingEmail.verified == true) {
+  if (existingEmail && existingEmail.verified) {
     return res.status(200).json({
       message: "verified",
     });
