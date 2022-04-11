@@ -4,10 +4,9 @@ import {
   KeyboardBackspace as KeyboardBackspaceIcon,
   Mic as MicIcon,
 } from "@material-ui/icons";
-import { IconButton, Grid } from "@material-ui/core";
-
-//custom components
+// custom components
 import Tooltip from "../Tooltip";
+// import { IconButton, Grid } from "@material-ui/core";
 
 function backNavItems() {
   document.getElementById("search-content").style.display = "none";
@@ -55,11 +54,11 @@ export const SearchForm = () => {
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item);
+    // console.log(item);
   };
 
   const handleOnFocus = () => {
-    console.log("Focused");
+    // console.log("Focused");
   };
 
   const formatResult = (item) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton, Grid } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { Menu as MenuIcon } from "@material-ui/icons";
 
 export const MenuIconAndLogo = ({ classes, handleDrawerToggle }) => (

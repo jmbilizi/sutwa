@@ -5,9 +5,9 @@ import Button from "@material-ui/core/Button";
 import PersonnalInfo from "./PersonnalInfo";
 
 //signup steps
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
+// import Stepper from "@material-ui/core/Stepper";
+// import Step from "@material-ui/core/Step";
+// import StepLabel from "@material-ui/core/StepLabel";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

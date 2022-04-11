@@ -3,31 +3,31 @@ import {
   AppBar,
   IconButton,
   // Button,
-  Grid,
+  //Grid,
   Badge,
   SwipeableDrawer,
-  Drawer,
+  //Drawer,
   Hidden,
 } from "@material-ui/core";
 
 import {
-  Menu as MenuIcon,
+  //Menu as MenuIcon,
   Search as SearchIcon,
   Apps as AppsIcon,
   Add as AddIcon,
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
   AccountCircle as AccountCircleIcon,
-  MoreVert as MoreVertIcon,
+  //MoreVert as MoreVertIcon,
   Mail as MailIcon,
-  KeyboardBackspace as KeyboardBackspaceIcon,
+  //KeyboardBackspace as KeyboardBackspaceIcon,
 } from "@material-ui/icons";
-//import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 import "./style.css";
 //custom components
 import Tooltip from "../Tooltip";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-//import { searchBar } from "./searchBar";
+// import { searchBar } from "./searchBar";
 import { drawerContent } from "./drawerContent";
 import {
   AccountMenuContent,
