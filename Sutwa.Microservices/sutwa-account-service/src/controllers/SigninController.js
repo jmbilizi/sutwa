@@ -44,9 +44,6 @@ const SigninController = async (req, res, next) => {
   const token = await jwt.sign(
     {
       id: user._id,
-      sutwaID: user.sutwaID,
-      name: user.name,
-      verified: user.verified,
     },
     process.env.JWT_SECRET,
     {
@@ -57,9 +54,7 @@ const SigninController = async (req, res, next) => {
   // Store it on session object
   req.session = await { token };
 
-  return res.status(200).json({
-    message: `Welcome back ${user.name}, you are successfully signed in!`,
-  });
+  return res.status(200).json({ token });
 };
 
 export default SigninController;

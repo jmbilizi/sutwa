@@ -1,4 +1,7 @@
 import client from "twilio";
+import * as dotenv from "dotenv";
+dotenv.config();
+
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const serviceID = process.env.VERIFICATION_SID;
@@ -7,7 +10,8 @@ const sendPhoneVerificationCode = (phone, verificationMethod) =>
   client(accountSid, authToken)
     .verify.services(serviceID)
     .verifications.create({ to: phone, channel: verificationMethod })
-    .then((verification) => verification);
+    .then((verification) => verification)
+    .catch((error) => error.data);
 
 const verifyPhone = (phone, code) =>
   client(accountSid, authToken)
@@ -28,10 +32,10 @@ const verifyEmail = (email, code) =>
     .verificationChecks.create({ to: email, code: code })
     .then((verification_check) => verification_check.sid);
 
-const lookupPhoneNumber = (phone, countryCode) => {
+const lookupPhoneNumber = (phone) => {
   client(accountSid, authToken)
     .lookups.v1.phoneNumbers(phone)
-    .fetch({ countryCode: countryCode })
+    .fetch({ type: ["carrier"] })
     .then((phone_number) => phone_number);
 };
 

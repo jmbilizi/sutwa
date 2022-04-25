@@ -1,9 +1,5 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import {
-  sendPhoneVerificationCode,
-  sendEmailVerificationCode,
-} from "./Twilio.js";
 import { ServerError } from "../errors/_index.js";
 
 const SignupController = async (req, res, next) => {
@@ -40,9 +36,6 @@ const SignupController = async (req, res, next) => {
     const token = await jwt.sign(
       {
         id: user._id,
-        sutwaID: user.sutwaID,
-        name: user.name,
-        verified: user.verified,
       },
       process.env.JWT_SECRET,
       {
@@ -53,9 +46,11 @@ const SignupController = async (req, res, next) => {
     // Store it on session object
     req.session = { token };
 
-    return res.status(200).json({
-      message: `Welcome ${user.name}, you have successfully signed up!`,
-    });
+    req.currentUser = {
+      id: user._id,
+    };
+
+    return res.status(200).json({ token });
   });
 };
 

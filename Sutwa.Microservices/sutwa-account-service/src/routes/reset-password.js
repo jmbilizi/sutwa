@@ -1,5 +1,5 @@
 import { check } from "express-validator";
-import { requireAuthentication, runValidation } from "../middlewares/_index.js";
+import { requireAuth, runValidation } from "../middlewares/_index.js";
 import { ResetPassword } from "../controllers/Reset-password.js";
 
 import express from "express";
@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.put(
   "/reset-password",
-  requireAuthentication,
+  requireAuth,
   [
     check("currentPassword")
       .not()

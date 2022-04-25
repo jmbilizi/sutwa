@@ -3,6 +3,11 @@ import { runValidation } from "../middlewares/runValidation.js";
 import express from "express";
 import User from "../models/User.js";
 import SignupController from "../controllers/SignupController.js";
+import {
+  sendPhoneVerificationCode,
+  sendEmailVerificationCode,
+  lookupPhoneNumber,
+} from "../controllers/Twilio.js";
 const router = express.Router();
 
 router.post(
@@ -32,7 +37,8 @@ router.post(
         if (existingPhone) {
           throw new Error("Phone is taken, please sign in if it yours!");
         } else {
-          return value;
+          const phoneLookUp = lookupPhoneNumber(value.number);
+          console.log(phoneLookUp);
         }
       }),
     check("email")

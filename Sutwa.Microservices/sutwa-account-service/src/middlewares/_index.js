@@ -1,11 +1,5 @@
 import { errorHandler } from "../errors/error-handler.js";
-import { requireAuthentication } from "./require-authentication.js";
-import { requireVerification } from "./require-verification.js";
+import { requireAuth } from "./require-auth.js";
 import { runValidation } from "./runValidation.js";
 
-export {
-  errorHandler,
-  requireAuthentication,
-  requireVerification,
-  runValidation,
-};
+export { errorHandler, requireAuth, runValidation };

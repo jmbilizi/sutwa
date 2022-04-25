@@ -1,8 +1,8 @@
-import { NotAuthenticatedError } from "../errors/_index.js";
+import { NotAuthorizedError } from "../errors/_index.js";
 import jwt from "jsonwebtoken";
 
-const requireAuthentication = (req, res, next) => {
-  const err = new NotAuthenticatedError();
+const requireAuth = (req, res, next) => {
+  const err = new NotAuthorizedError();
   if (!req.session?.token) {
     req.currentUser = null;
     return next(err);
@@ -17,4 +17,4 @@ const requireAuthentication = (req, res, next) => {
   }
 };
 
-export { requireAuthentication };
+export { requireAuth };

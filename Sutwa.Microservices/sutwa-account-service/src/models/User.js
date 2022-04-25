@@ -55,6 +55,12 @@ const userSchema = new Schema(
       verified: {
         type: Boolean,
         default: false,
+        required: [
+          function () {
+            return this.email === null;
+          },
+          "Phone verification is required if Email is not provided",
+        ],
       },
     },
     dateOfBirth: {
