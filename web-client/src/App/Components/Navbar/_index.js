@@ -210,6 +210,7 @@ const Navbar = (props) => {
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={mobileOpen}
+          onOpen={() => null}
           onClose={handleDrawerToggle}
           classes={{
             paper: classes.drawerPaper,

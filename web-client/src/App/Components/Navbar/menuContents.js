@@ -85,7 +85,7 @@ export const GeneralNotificationsMenuContent = () => {
       <List>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((Text, Index) => (
           <>
-            <ListItem button key={Text}>
+            <ListItem button key={Index}>
               <ListItemText primary={`Notification ${Text}`} />
             </ListItem>
           </>
@@ -101,7 +101,7 @@ export const MessageNotificationsMenuContent = () => {
       <List>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
           <>
-            <ListItem button key={Text}>
+            <ListItem button key={Index}>
               <ListItemText primary={`Message ${Text}`} />
             </ListItem>
           </>
@@ -125,7 +125,7 @@ export const SutwAppsMenuContent = () => {
           "Tournaments",
         ].map((Text, Index) => (
           <>
-            <ListItem button key={Text}>
+            <ListItem button key={Index}>
               <ListItemText primary={`Sutwa ${Text}`} />
             </ListItem>
           </>
@@ -142,7 +142,7 @@ export const CreateMenuContent = () => {
         {["Post", "Team", "Club", "Competition", "Tournament"].map(
           (Text, Index) => (
             <>
-              <ListItem button key={Text}>
+              <ListItem button key={Index}>
                 <ListItemText primary={`Create a ${Text}`} />
               </ListItem>
             </>
