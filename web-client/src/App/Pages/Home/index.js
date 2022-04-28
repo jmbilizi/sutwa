@@ -5,8 +5,8 @@ import * as actions from "../../_Store/Reduce/actionTypes/_index";
 const Home = () => {
   //redux code
   const [newUser, setNewUser] = useState({ name: "", email: "", dob: "" });
-  const counter = useSelector((state) => state.counter);
-  const users = useSelector((state) => state.users);
+  const counter = useSelector((state) => state.Counter);
+  const users = useSelector((state) => state.Users);
   const dispatch = useDispatch();
 
   return (
@@ -59,7 +59,7 @@ const Home = () => {
           <h5 className="mt-4">Users</h5>
           <ol className="col-6 mt-3 mx-auto">
             {users.map((user) => (
-              <li>
+              <li key={user.id}>
                 name: {user.name}, email: {user.email}, dob: {user.dob}
               </li>
             ))}
