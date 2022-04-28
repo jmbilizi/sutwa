@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as Layouts from "../../Components/Layouts";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../Store/Reduce/actionTypes/_index";
+import * as actions from "../../_Store/Reduce/actionTypes/_index";
 const Home = () => {
   //redux code
   const [newUser, setNewUser] = useState({ name: "", email: "", dob: "" });
-  const counter = useSelector((state) => state.Counter);
-  const users = useSelector((state) => state.Users);
+  const counter = useSelector((state) => state.counter);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   return (
