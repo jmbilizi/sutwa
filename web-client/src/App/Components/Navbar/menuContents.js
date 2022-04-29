@@ -8,6 +8,17 @@ import {
   // ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
+import {
+  AccountCircle as AccountCircleIcon,
+  Mail as MailIcon,
+  Group as GroupIcon,
+  Pets as ClubIcon,
+  EmojiEvents as EmojiEventsIcon,
+  Event as EventIcon,
+  Place as PlaceIcon,
+  Announcement as AnnouncementIcon,
+} from "@material-ui/icons";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 export const AccountMenuContent = ({ closeMenu }) => {
@@ -29,6 +40,11 @@ export const AccountMenuContent = ({ closeMenu }) => {
       borderRadius: "500px",
       textDecoration: "none",
       fontSize: "20px",
+      "&:hover": {
+        backgroundColor: "#E8E8E8",
+      },
+    },
+    sutwaApps: {
       "&:hover": {
         backgroundColor: "#E8E8E8",
       },
@@ -69,7 +85,7 @@ export const AccountMenuContent = ({ closeMenu }) => {
         <small>
           <Link href="#">Language(EN US)</Link>
         </small>
-        <small className="d-flex gap-2 float-end">
+        <small className="d-flex gap-2 float-end sutwa-apps">
           <Link href="/help">Help</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
@@ -112,26 +128,76 @@ export const MessageNotificationsMenuContent = () => {
 };
 
 export const SutwAppsMenuContent = () => {
+  const useStyles = makeStyles((theme) => ({
+    sutwaApps: {
+      "&:hover": {
+        backgroundColor: "#E8E8E8",
+        borderRadius: "5px",
+      },
+    },
+  }));
+
+  const classes = useStyles();
   return (
-    <>
-      <List>
-        {[
-          "Account",
-          "Feed",
-          "Messaging",
-          "Teams",
-          "Clubs",
-          "Competitions",
-          "Tournaments",
-        ].map((Text, Index) => (
-          <>
-            <ListItem button key={Index}>
-              <ListItemText primary={`Sutwa ${Text}`} />
-            </ListItem>
-          </>
-        ))}
-      </List>
-    </>
+    <div className="row m-3">
+      {[
+        {
+          name: "Account",
+          icon: <AccountCircleIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Feed",
+          icon: <AnnouncementIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Messaging",
+          icon: <MailIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Teams",
+          icon: <GroupIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Competitions",
+          icon: <EmojiEventsIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Events",
+          icon: <EventIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Tournaments",
+          icon: <EmojiEventsIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Facilities",
+          icon: <PlaceIcon fontSize="large" />,
+          href: "",
+        },
+        {
+          name: "Clubs",
+          icon: <ClubIcon fontSize="large" />,
+          href: "",
+        },
+      ].map((service, Index) => (
+        <div
+          key={Index}
+          className={`${classes.sutwaApps} col-4 text-center py-3`}
+        >
+          {service.icon}
+          <label className="d-block pt-2">
+            <small>{service.name}</small>
+          </label>
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -139,7 +205,7 @@ export const CreateMenuContent = () => {
   return (
     <>
       <List>
-        {["Post", "Team", "Club", "Competition", "Tournament"].map(
+        {["Post", "Team", "Club", "Competition", "Tournament", "Facility"].map(
           (Text, Index) => (
             <>
               <ListItem button key={Index}>
