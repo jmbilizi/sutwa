@@ -139,63 +139,80 @@ export const SutwAppsMenuContent = () => {
 
   const classes = useStyles();
   return (
-    <div className="row m-3">
+    <div className="row m-3 p-0">
       {[
         {
           name: "Account",
           icon: <AccountCircleIcon fontSize="large" />,
-          href: "",
+          href: "/account",
         },
         {
           name: "Feed",
           icon: <AnnouncementIcon fontSize="large" />,
-          href: "",
+          href: "/feed",
         },
         {
           name: "Messaging",
           icon: <MailIcon fontSize="large" />,
-          href: "",
+          href: "/messaging",
         },
         {
           name: "Teams",
           icon: <GroupIcon fontSize="large" />,
-          href: "",
+          href: "/teams",
         },
         {
           name: "Competitions",
           icon: <EmojiEventsIcon fontSize="large" />,
-          href: "",
+          href: "/competitions",
         },
         {
           name: "Events",
           icon: <EventIcon fontSize="large" />,
-          href: "",
+          href: "/events",
         },
         {
           name: "Tournaments",
-          icon: <EmojiEventsIcon fontSize="large" />,
-          href: "",
+          icon: (
+            <span
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "Center",
+                alignItems: "Center",
+              }}
+            >
+              <EmojiEventsIcon fontSize="large" />
+              <EmojiEventsIcon
+                fontSize="large"
+                style={{ marginLeft: "-1rem" }}
+              />
+            </span>
+          ),
+          href: "/tournaments",
         },
         {
           name: "Facilities",
           icon: <PlaceIcon fontSize="large" />,
-          href: "",
+          href: "/facilities",
         },
         {
           name: "Clubs",
           icon: <ClubIcon fontSize="large" />,
-          href: "",
+          href: "/clubs",
         },
       ].map((service, Index) => (
-        <div
+        <a
           key={Index}
           className={`${classes.sutwaApps} col-4 text-center py-3`}
+          href={service.href}
+          style={{ textDecoration: "inherit", color: "inherit" }}
         >
           {service.icon}
           <label className="d-block pt-2">
             <small>{service.name}</small>
           </label>
-        </div>
+        </a>
       ))}
     </div>
   );
