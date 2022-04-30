@@ -14,12 +14,10 @@ import {
   //Menu as MenuIcon,
   Search as SearchIcon,
   Apps as AppsIcon,
-  Add as AddIcon,
+  AddCircleOutline as AddCircleOutlineIcon,
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
-  AccountCircle as AccountCircleIcon,
-  //MoreVert as MoreVertIcon,
-  Mail as MailIcon,
-  //KeyboardBackspace as KeyboardBackspaceIcon,
+  AccountCircleOutlined as AccountCircleOutlinedIcon,
+  MailOutline as MailOutlineIcon,
 } from "@material-ui/icons";
 // import { Helmet } from "react-helmet";
 
@@ -139,7 +137,7 @@ const Navbar = (props) => {
                   color="inherit"
                   onClick={() => handleClick(<CreateMenuContent />)}
                 >
-                  <AddIcon />
+                  <AddCircleOutlineIcon />
                 </IconButton>
               </Tooltip>
             </li>
@@ -152,7 +150,7 @@ const Navbar = (props) => {
                   }
                 >
                   <Badge badgeContent={9} color="secondary">
-                    <MailIcon />
+                    <MailOutlineIcon />
                   </Badge>
                 </IconButton>
               </Tooltip>
@@ -190,7 +188,7 @@ const Navbar = (props) => {
                   }
                   className="p-2"
                 >
-                  <AccountCircleIcon fontSize="large" />
+                  <AccountCircleOutlinedIcon fontSize="large" />
                 </IconButton>
               </Tooltip>
             </li>
