@@ -5,7 +5,7 @@ import {
   Link,
   List,
   ListItem,
-  // ListItemIcon,
+  ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
 import {
@@ -16,6 +16,7 @@ import {
   EmojiEvents as EmojiEventsIcon,
   Event as EventIcon,
   Place as PlaceIcon,
+  AddBoxOutlined as AddBoxOutlinedIcon,
   Announcement as AnnouncementIcon,
 } from "@material-ui/icons";
 
@@ -97,39 +98,31 @@ export const AccountMenuContent = ({ closeMenu }) => {
 
 export const GeneralNotificationsMenuContent = () => {
   return (
-    <>
-      <List>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((Text, Index) => (
-          <>
-            <ListItem button key={Index}>
-              <ListItemText primary={`Notification ${Text}`} />
-            </ListItem>
-          </>
-        ))}
-      </List>
-    </>
+    <List>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((Text, Index) => (
+        <ListItem button key={Index}>
+          <ListItemText primary={`Notification ${Text}`} />
+        </ListItem>
+      ))}
+    </List>
   );
 };
 
 export const MessageNotificationsMenuContent = () => {
   return (
-    <>
-      <List>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
-          <>
-            <ListItem button key={Index}>
-              <ListItemText primary={`Message ${Text}`} />
-            </ListItem>
-          </>
-        ))}
-      </List>
-    </>
+    <List>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
+        <ListItem button key={Index}>
+          <ListItemText primary={`Message ${Text}`} />
+        </ListItem>
+      ))}
+    </List>
   );
 };
 
 export const SutwAppsMenuContent = () => {
   const useStyles = makeStyles((theme) => ({
-    sutwaApps: {
+    hover: {
       "&:hover": {
         backgroundColor: "#E8E8E8",
         borderRadius: "5px",
@@ -139,7 +132,7 @@ export const SutwAppsMenuContent = () => {
 
   const classes = useStyles();
   return (
-    <div className="row m-3 p-0">
+    <List className="row p-2">
       {[
         {
           name: "Account",
@@ -202,9 +195,9 @@ export const SutwAppsMenuContent = () => {
           href: "/clubs",
         },
       ].map((service, Index) => (
-        <a
+        <Link
           key={Index}
-          className={`${classes.sutwaApps} col-4 text-center py-3`}
+          className={`${classes.hover} col-4 text-center py-3`}
           href={service.href}
           style={{ textDecoration: "inherit", color: "inherit" }}
         >
@@ -212,26 +205,64 @@ export const SutwAppsMenuContent = () => {
           <label className="d-block pt-2">
             <small>{service.name}</small>
           </label>
-        </a>
+        </Link>
       ))}
-    </div>
+    </List>
   );
 };
 
 export const CreateMenuContent = () => {
+  const useStyles = makeStyles((theme) => ({
+    hover: {
+      "&:hover": {
+        backgroundColor: "#E8E8E8",
+        borderRadius: "5px",
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
-    <>
-      <List>
-        {["Post", "Team", "Club", "Competition", "Tournament", "Facility"].map(
-          (Text, Index) => (
-            <>
-              <ListItem button key={Index}>
-                <ListItemText primary={`Create a ${Text}`} />
-              </ListItem>
-            </>
-          )
-        )}
-      </List>
-    </>
+    <List className="mx-2">
+      {[
+        {
+          name: "Post",
+          icon: <AddBoxOutlinedIcon />,
+          href: "/new-post",
+        },
+        { name: "Team", icon: <AddBoxOutlinedIcon />, href: "/new-team" },
+        { name: "Club", icon: <AddBoxOutlinedIcon />, href: "/new-club" },
+        {
+          name: "Competition",
+          icon: <AddBoxOutlinedIcon />,
+          href: "/new-competition",
+        },
+        {
+          name: "Tournament",
+          icon: <AddBoxOutlinedIcon />,
+          href: "/new-tournament",
+        },
+        {
+          name: "Facility",
+          icon: <AddBoxOutlinedIcon />,
+          href: "/new-facility",
+        },
+      ].map((object, Index) => (
+        <Link
+          key={Index}
+          style={{ textDecoration: "inherit", color: "inherit" }}
+          href={object.href}
+        >
+          <ListItem
+            className={`${classes.hover}`}
+            style={{ borderRadius: "5px" }}
+          >
+            <ListItemIcon>{object.icon}</ListItemIcon>
+            <ListItemText primary={`Create a ${object.name}`} />
+          </ListItem>
+        </Link>
+      ))}
+    </List>
   );
 };
