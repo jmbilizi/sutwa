@@ -98,9 +98,9 @@ export const AccountMenuContent = ({ closeMenu }) => {
 
 export const GeneralNotificationsMenuContent = () => {
   return (
-    <List>
+    <List className="p-2">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((Text, Index) => (
-        <ListItem button key={Index}>
+        <ListItem button key={Index} style={{ borderRadius: "5px" }}>
           <ListItemText primary={`Notification ${Text}`} />
         </ListItem>
       ))}
@@ -110,9 +110,9 @@ export const GeneralNotificationsMenuContent = () => {
 
 export const MessageNotificationsMenuContent = () => {
   return (
-    <List>
+    <List className="p-2">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
-        <ListItem button key={Index}>
+        <ListItem button key={Index} style={{ borderRadius: "5px" }}>
           <ListItemText primary={`Message ${Text}`} />
         </ListItem>
       ))}
