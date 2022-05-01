@@ -7,15 +7,15 @@ export const HOME = {
 };
 
 export const SIGNUP = {
-  defaultParentPath: "/",
+  defaultParentPath: "/account",
   modal: true,
-  path: "/signup",
+  path: "/account/signup",
   component: AccountPages.Signup,
 };
 
 export const LOGIN = {
-  defaultParentPath: "/",
+  defaultParentPath: "/account",
   modal: true,
-  path: "/login",
+  path: "/account/login",
   component: AccountPages.Signin,
 };

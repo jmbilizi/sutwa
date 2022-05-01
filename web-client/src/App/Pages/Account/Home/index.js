@@ -188,14 +188,14 @@ export default function Home(props) {
             <div className="d-grid gap-2 col-md-8 lead">
               <ModalLink
                 className={`${classes.sutwaBtn2} btn-default border text-center p-2 mb-3`}
-                to="/signup"
+                to="/account/signup"
               >
                 Sign up
               </ModalLink>
 
               <ModalLink
                 className={`${classes.sutwaBtn1} btn-default text-center p-2`}
-                to="/login"
+                to="/account/login"
               >
                 Log in
               </ModalLink>

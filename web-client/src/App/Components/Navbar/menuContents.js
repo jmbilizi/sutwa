@@ -69,14 +69,14 @@ export const AccountMenuContent = ({ closeMenu }) => {
         <ModalLink
           className={`${classes.sutwaBtn2} btn-default border text-center p-2`}
           onClick={closeMenu}
-          to="/signup"
+          to="/account/signup"
         >
           Sign up
         </ModalLink>
         <ModalLink
           className={`${classes.sutwaBtn1} btn-default text-center p-2`}
           onClick={closeMenu}
-          to="/login"
+          to="/account/login"
         >
           Log in
         </ModalLink>
