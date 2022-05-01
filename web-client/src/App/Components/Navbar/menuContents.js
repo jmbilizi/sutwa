@@ -97,10 +97,26 @@ export const AccountMenuContent = ({ closeMenu }) => {
 };
 
 export const GeneralNotificationsMenuContent = () => {
+  const useStyles = makeStyles((theme) => ({
+    hover: {
+      "&:hover": {
+        backgroundColor: "#E8E8E8",
+        borderRadius: "5px",
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <List className="p-2">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((Text, Index) => (
-        <ListItem button key={Index} style={{ borderRadius: "5px" }}>
+        <ListItem
+          button
+          key={Index}
+          style={{ borderRadius: "5px" }}
+          className={`${classes.hover}`}
+        >
           <ListItemText primary={`Notification ${Text}`} />
         </ListItem>
       ))}
@@ -109,10 +125,26 @@ export const GeneralNotificationsMenuContent = () => {
 };
 
 export const MessageNotificationsMenuContent = () => {
+  const useStyles = makeStyles((theme) => ({
+    hover: {
+      "&:hover": {
+        backgroundColor: "#E8E8E8",
+        borderRadius: "5px",
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <List className="p-2">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
-        <ListItem button key={Index} style={{ borderRadius: "5px" }}>
+        <ListItem
+          button
+          key={Index}
+          style={{ borderRadius: "5px" }}
+          className={`${classes.hover}`}
+        >
           <ListItemText primary={`Message ${Text}`} />
         </ListItem>
       ))}
