@@ -114,7 +114,7 @@ const Navbar = (props) => {
   return (
     <>
       <AppBar color="inherit" position="fixed" className="navbar py-0">
-        <div className="container-fluid p-0">
+        <div className="container-fluid justify-content-between p-0">
           <MenuIconAndLogo
             classes={classes}
             handleDrawerToggle={handleDrawerToggle}
