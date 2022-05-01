@@ -22,19 +22,19 @@ const PersonnalInfo = () => {
 
   return (
     <Grid container spacing={3} noValidate>
-      <Grid item xs={12} className="py-0">
+      <Grid item xs={12} sm={6} className="py-0">
         <TextField
           margin="normal"
           required
           fullWidth
-          id="name"
-          label="Full Name"
-          name="name"
-          autoComplete="name"
+          id="firstname"
+          label="First Name"
+          name="firstname"
+          autoComplete="first name"
           autoFocus
         />
       </Grid>
-      {/* <Grid item xs={12} sm={6} className="py-0">
+      <Grid item xs={12} sm={6} className="py-0">
         <TextField
           margin="normal"
           required
@@ -44,7 +44,7 @@ const PersonnalInfo = () => {
           name="lastname"
           autoComplete="last name"
         />
-      </Grid> */}
+      </Grid>
       <Grid item xs={12} className="py-0">
         {email ? (
           <TextField
