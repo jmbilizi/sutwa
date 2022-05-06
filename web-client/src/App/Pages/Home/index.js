@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import * as Layouts from "../../Components/Layouts";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../_Store/Reduce/actionTypes/_index";
-import countries from "../../Helpers/countries.json";
 import numVerifyCountries from "../../Helpers/numVerifyCountries.json";
 import { useFetch } from "../../Hooks/useFetch";
 
