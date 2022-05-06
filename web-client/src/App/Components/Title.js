@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 const Title = ({ label }) => {
   const useStyles = makeStyles((theme) => ({
     paper: {
-      margin: theme.spacing(0, 4),
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -23,7 +22,7 @@ const Title = ({ label }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.paper}>
+    <div className={`${classes.paper} mb-5`}>
       <IconButton
         style={{
           paddingLeft: "14px",

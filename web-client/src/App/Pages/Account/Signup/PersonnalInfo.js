@@ -1,18 +1,19 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
+import { TextField, Grid } from "@mui/material";
 import Link from "@material-ui/core/Link";
-
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import PhoneField from "react-phone-input-material-ui";
+import "react-phone-input-material-ui/lib/style.css";
 
 const PersonnalInfo = () => {
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [email, setEmail] = React.useState(true);
+  const [phone, setPhone] = React.useState("");
 
   const handleEmail = () => setEmail(!email);
 
@@ -22,9 +23,8 @@ const PersonnalInfo = () => {
 
   return (
     <Grid container spacing={3} noValidate>
-      <Grid item xs={12} sm={6} className="py-0">
+      <Grid item xs={12} sm={6}>
         <TextField
-          margin="normal"
           required
           fullWidth
           id="firstname"
@@ -34,9 +34,8 @@ const PersonnalInfo = () => {
           autoFocus
         />
       </Grid>
-      <Grid item xs={12} sm={6} className="py-0">
+      <Grid item xs={12} sm={6}>
         <TextField
-          margin="normal"
           required
           fullWidth
           id="lastname"
@@ -45,29 +44,25 @@ const PersonnalInfo = () => {
           autoComplete="last name"
         />
       </Grid>
-      <Grid item xs={12} className="py-0">
+      <Grid item xs={12}>
         {email ? (
           <TextField
-            margin="normal"
             required
             fullWidth
             id="email"
-            label="Email"
+            label="Email Address"
             name="email"
             autoComplete="email"
           />
         ) : (
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="phone"
-            label="Phone"
-            name="phone"
-            autoComplete="phone"
+          <PhoneField
+            component={TextField}
+            value={phone}
+            enableSearch
+            onChange={(value) => setPhone(value)}
           />
         )}
-        <Link className="btn p-0 mb-4 mt-1" onClick={handleEmail}>
+        <Link className="btn p-0 mb-2 mt-1" onClick={handleEmail}>
           Use {email ? "phone" : "email"} instead
         </Link>
       </Grid>
@@ -79,19 +74,19 @@ const PersonnalInfo = () => {
           pet, or something else. This will not be shown publicly.
         </p>
       </Grid>
-      <Grid item xs={12} className="py-0">
+      <Grid item xs={12}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
-            className="mt-2"
+            className="mt-2 p-0"
             required
             fullWidth
             variant="inline"
+            inputVariant="outlined"
             format="MM/dd/yyyy"
-            margin="normal"
             id="birthdate"
             name="birthdate"
-            label="MM/DD/YYYY"
+            placeholder="MM/DD/YYYY"
             value={selectedDate}
             onChange={handleDateChange}
             KeyboardButtonProps={{
