@@ -62,12 +62,12 @@ const PersonnalInfo = () => {
             onChange={(value) => setPhone(value)}
           />
         )}
-        <Link className="btn p-0 mb-2 mt-1" onClick={handleEmail}>
+        <Link className="btn p-0 mt-1" onClick={handleEmail}>
           Use {email ? "phone" : "email"} instead
         </Link>
       </Grid>
 
-      <Grid item xs={12} className="py-0">
+      <Grid item xs={12} className="pb-0">
         <h5 className="font-weight-bold">Date of Birth</h5>
         <p className="mb-0">
           Please confirm your own age, even if this account is for a business, a
@@ -78,10 +78,9 @@ const PersonnalInfo = () => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
-            className="mt-2 p-0"
+            className="p-0"
             required
             fullWidth
-            variant="inline"
             inputVariant="outlined"
             format="MM/dd/yyyy"
             id="birthdate"

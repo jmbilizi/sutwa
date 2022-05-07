@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import { TextField, Grid } from "@mui/material";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import {
+  TextField,
+  Grid,
+  FormControlLabel,
+  Checkbox,
+  Button,
+} from "@mui/material";
 import { ModalLink } from "react-router-modal-gallery";
 import { makeStyles } from "@material-ui/core/styles";
 import Title from "../../../Components/Title";
@@ -83,12 +86,12 @@ const Signin = ({ history }) => {
             <TextField
               required
               fullWidth
-              id="email"
+              id="emailPhoneOrSutwaID"
               label="Phone, email, or sutwaID"
-              name="email"
+              name="emailPhoneOrSutwaID"
               onChange={handleChange("emailPhoneOrSutwaID")}
               value={emailPhoneOrSutwaID}
-              autoComplete="email"
+              autoComplete="emailPhoneOrSutwaID"
               autoFocus
             />
           </Grid>
@@ -115,7 +118,7 @@ const Signin = ({ history }) => {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={`${classes.submit} mb-3`}
             >
               Sign In
             </Button>
