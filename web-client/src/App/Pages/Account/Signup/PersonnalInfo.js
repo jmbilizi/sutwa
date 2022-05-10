@@ -59,7 +59,14 @@ const PersonnalInfo = () => {
             component={TextField}
             value={phone}
             enableSearch
+            countryCodeEditable={false}
+            country="us"
             onChange={(value) => setPhone(value)}
+            inputProps={{
+              label: "Phone Number",
+              required: true,
+            }}
+            masks={{ bi: ".. .. .. .." }}
           />
         )}
         <Link className="btn p-0 mt-1" onClick={handleEmail}>
@@ -91,6 +98,7 @@ const PersonnalInfo = () => {
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
+            autoComplete="bday"
           />
         </MuiPickersUtilsProvider>
       </Grid>
