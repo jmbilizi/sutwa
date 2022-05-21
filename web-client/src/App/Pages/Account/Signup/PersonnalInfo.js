@@ -66,7 +66,7 @@ const PersonnalInfo = () => {
               label: "Phone Number",
               required: true,
             }}
-            masks={{ bi: ".. .. .. .." }}
+            masks={{ bi: ".. .. .. ..", cd: "... ... ..." }}
           />
         )}
         <Link className="btn p-0 mt-1" onClick={handleEmail}>

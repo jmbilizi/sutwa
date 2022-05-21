@@ -5,6 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Client Web App",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src",
+      "skipFiles": [
+        "node_modules/**/*.js"
+      ]
+    },
+    {
       "name": "sutwa-account-service",
       "type": "node",
       "request": "launch",
@@ -19,7 +29,7 @@
   "compounds": [
     {
       "name": "Debug All",
-      "configurations": ["sutwa-account-service"]
+      "configurations": ["sutwa-account-service", "Client Web App"]
     }
   ]
 }

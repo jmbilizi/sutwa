@@ -9,10 +9,7 @@ import {
 import { ModalLink } from "react-router-modal-gallery";
 import { makeStyles } from "@material-ui/core/styles";
 import Title from "../../../Components/Title";
-
-//import axios from "axios";
-
-//import { authenticate, isAuth } from "../../../Helpers";
+import { useRequest } from "../../../Hooks/useRequest";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,47 +48,49 @@ const useStyles = makeStyles((theme) => ({
 
 const Signin = ({ history }) => {
   const [state, setState] = useState({
-    emailPhoneOrSutwaID: "",
-    password: "",
-    error: "",
+    phoneOrEmailOrSutwaID: null,
+    password: null,
   });
-  const { emailPhoneOrSutwaID, password, error } = state;
+
+  const { phoneOrEmailOrSutwaID, password } = state;
+
+  const { doRequest, errors } = useRequest({
+    url: "https://localhost:8080/signin",
+    method: "post",
+    body: {
+      phoneOrEmailOrSutwaID,
+      password,
+    },
+    onSuccess: () => history.push("/"),
+  });
 
   const handleChange = (name) => (event) => {
     setState({ ...state, error: "", [name]: event.target.value });
   };
 
-  // const informParent = (response) => {
-  //   authenticate(response, () => {
-  //     isAuth() && isAuth().role === "admin"
-  //       ? history.push("/admin")
-  //       : history.push(`/user/${isAuth()._id}`);
-  //   });
-  // };
+  const Submit = async (event) => {
+    event.preventDefault();
+    doRequest();
+  };
 
   const classes = useStyles();
 
   return (
     <div>
       <Title label="Sign In" />
-      <div
-        className="alert alert-danger text-center"
-        style={{ display: error ? "" : "none" }}
-      >
-        {error}
-      </div>
+      {errors}
       <div style={{ marginBottom: "100px" }} className={classes.paper}>
         <Grid className={classes.form} container spacing={3} noValidate>
           <Grid item xs={12}>
             <TextField
               required
               fullWidth
-              id="emailPhoneOrSutwaID"
+              id="phoneOrEmailOrSutwaID"
               label="Phone, email, or sutwaID"
-              name="emailPhoneOrSutwaID"
-              onChange={handleChange("emailPhoneOrSutwaID")}
-              value={emailPhoneOrSutwaID}
-              autoComplete="emailPhoneOrSutwaID"
+              name="phoneOrEmailOrSutwaID"
+              onChange={handleChange("phoneOrEmailOrSutwaID")}
+              value={phoneOrEmailOrSutwaID}
+              autoComplete="phoneOrEmailOrSutwaID"
               autoFocus
             />
           </Grid>
@@ -119,6 +118,7 @@ const Signin = ({ history }) => {
               variant="contained"
               color="primary"
               className={`${classes.submit} mb-3`}
+              onClick={(event) => Submit(event)}
             >
               Sign In
             </Button>

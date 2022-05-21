@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"path": "web-client",
+			"problemMatcher": [],
+			"label": "npm: start - web-client",
+			"detail": "react-scripts start"
+		}
+	]
+}

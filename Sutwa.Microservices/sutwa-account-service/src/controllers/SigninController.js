@@ -54,7 +54,15 @@ const SigninController = async (req, res, next) => {
   // Store it on session object
   req.session = await { token };
 
-  return res.status(200).json({ token });
+  return res.status(200).json(
+    (({ name, dateOfBirth, gender, sutwaID, role }) => ({
+      name,
+      dateOfBirth,
+      gender,
+      sutwaID,
+      role,
+    }))(user)
+  );
 };
 
 export default SigninController;
