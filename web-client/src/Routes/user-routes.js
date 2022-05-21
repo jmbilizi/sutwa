@@ -1,4 +1,4 @@
-import * as UserPages from "../Pages/User";
+import * as UserPages from "../pages/user";
 
 export const UserProfilePage = {
   exact: true,

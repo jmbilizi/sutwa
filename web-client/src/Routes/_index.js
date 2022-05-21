@@ -6,8 +6,8 @@ import * as AccountRoutes from "./account-routes";
 import * as UserRoutes from "./user-routes";
 import * as ClubRoutes from "./club-routes";
 import * as TournamentRoutes from "./tournament-routes";
-import NewsFeed from "../Pages/Feed";
-import Homepage from "../Pages/Home";
+import NewsFeed from "../pages/feed";
+import Homepage from "../pages";
 
 const routes = [
   {

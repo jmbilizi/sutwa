@@ -1,4 +1,4 @@
-import * as TournamentPages from "../Pages/Tournament";
+import * as TournamentPages from "../pages/tournament";
 
 export const TournamentProfilePage = {
   exact: true,

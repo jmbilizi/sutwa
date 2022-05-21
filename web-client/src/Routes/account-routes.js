@@ -1,4 +1,4 @@
-import * as AccountPages from "../Pages/Account";
+import * as AccountPages from "../pages/account";
 
 export const HOME = {
   exact: true,

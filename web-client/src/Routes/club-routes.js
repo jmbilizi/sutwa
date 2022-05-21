@@ -1,4 +1,4 @@
-import * as ClubPages from "../Pages/Club";
+import * as ClubPages from "../pages/club";
 
 export const ClubProfilePage = {
   exact: true,

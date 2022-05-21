@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
 import { Provider } from "react-redux";
-import { Store } from "./App/_Store/index";
+import { Store } from "./_Store/index";
 import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./App/Routes/_index";
+import Routes from "./Routes/_index";
 
 ReactDOM.render(
   <React.StrictMode>

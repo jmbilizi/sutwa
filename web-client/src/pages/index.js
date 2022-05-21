@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import * as Layouts from "../../Components/Layouts";
+import * as Layouts from "../Components/Layouts";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../_Store/Reduce/actionTypes/_index";
-import numVerifyCountries from "../../Helpers/numVerifyCountries.json";
-import { useFetch } from "../../Hooks/useFetch";
+import * as actions from "../_Store/Reduce/actionTypes/_index";
+import numVerifyCountries from "../Helpers/numVerifyCountries.json";
+import { useFetch } from "../Hooks/useFetch";
 
 const Home = () => {
   //redux code
