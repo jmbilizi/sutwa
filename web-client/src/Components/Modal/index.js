@@ -4,15 +4,16 @@ import {
   DialogContent,
   IconButton,
   useMediaQuery,
-} from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
-import { Close as CloseIcon } from "@material-ui/icons";
+} from "@mui/material";
+import { useTheme } from "@mui/styles";
+import { Close as CloseIcon } from "@mui/icons-material";
+import PropTypes from "prop-types";
 import Tooltip from "../Tooltip";
 
-function Modal({ children, title, open, onExited, ...rest }) {
+function Modal({ children, open, onExited, ...rest }) {
   const [showModal, setShowModal] = useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     if (open) {
@@ -22,11 +23,8 @@ function Modal({ children, title, open, onExited, ...rest }) {
 
   const handleClose = () => {
     setShowModal(false);
-  };
-
-  function onExitAnimationEnd() {
     onExited();
-  }
+  };
 
   return (
     <Dialog
@@ -35,8 +33,6 @@ function Modal({ children, title, open, onExited, ...rest }) {
       fullWidth
       maxWidth="sm"
       open={showModal}
-      // onClose={handleClose}
-      onExited={onExitAnimationEnd}
       aria-labelledby="responsive-dialog-title"
     >
       <DialogContent
@@ -59,7 +55,9 @@ function Modal({ children, title, open, onExited, ...rest }) {
 }
 
 Modal.propTypes = {
-  ...Dialog.propTypes,
+  children: PropTypes.node.isRequired,
+  open: PropTypes.bool,
+  onExited: PropTypes.func,
 };
 
 export default Modal;

@@ -1,3 +1,5 @@
-import TournamentProfilePage from "./Profile";
+import * as React from "react";
 
-export { TournamentProfilePage };
+export default function Tournament() {
+  return <div>Tournament Home Page</div>;
+}

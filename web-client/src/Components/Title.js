@@ -1,7 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@mui/styles";
+import { IconButton, Typography } from "@mui/material";
 
 const Title = ({ label }) => {
   const useStyles = makeStyles((theme) => ({
@@ -22,7 +21,7 @@ const Title = ({ label }) => {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.paper} mb-5`}>
+    <div className={`${classes.paper} mb-4`}>
       <IconButton
         style={{
           paddingLeft: "14px",

@@ -1,7 +1,8 @@
-import React from "react";
-import { Menu as MaterialUIMenu } from "@material-ui/core";
+import * as React from "react";
+import { Menu as MaterialUIMenu } from "@mui/material";
+import PropTypes from "prop-types";
 
-function Menu({ children, ...rest }) {
+const Menu = ({ children, ...rest }) => {
   return (
     <MaterialUIMenu
       {...rest}
@@ -22,9 +23,10 @@ function Menu({ children, ...rest }) {
       {children}
     </MaterialUIMenu>
   );
-}
+};
 
 Menu.propTypes = {
-  ...MaterialUIMenu.propTypes,
+  children: PropTypes.node,
 };
+
 export default Menu;

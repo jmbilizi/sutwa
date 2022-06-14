@@ -1,15 +1,14 @@
-import React from "react";
+import * as React from "react";
 import {
   AppBar,
   IconButton,
   // Button,
-  //Grid,
+  Grid,
   Badge,
   SwipeableDrawer,
   //Drawer,
   Hidden,
-} from "@material-ui/core";
-
+} from "@mui/material";
 import {
   //Menu as MenuIcon,
   Search as SearchIcon,
@@ -18,14 +17,13 @@ import {
   NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   MailOutline as MailOutlineIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
+import { makeStyles, useTheme } from "@mui/styles";
 // import { Helmet } from "react-helmet";
 
-import "./style.css";
 //custom components
 import Tooltip from "../Tooltip";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import { searchBar } from "./searchBar";
+import { searchBar } from "./searchBar";
 import { drawerContent } from "./drawerContent";
 import {
   AccountMenuContent,
@@ -34,8 +32,8 @@ import {
   SutwAppsMenuContent,
   CreateMenuContent,
 } from "./menuContents";
-import { MenuIconAndLogo } from "./menuIconAndLogo";
-import Menu from "../../Components/Menu";
+import MenuIconAndLogo from "./menuIconAndLogo";
+import Menu from "../Menu";
 
 import { SearchForm } from "./searchForm";
 
@@ -55,13 +53,10 @@ const Navbar = (props) => {
 
   const drawerWidth = 240;
 
-  const useStyles = makeStyles((theme) => ({
-    appBar: {
-      position: "relative",
-    },
+  const useStyles = makeStyles((themes) => ({
     menuButton: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
+      marginLeft: themes.spacing(1),
+      marginRight: themes.spacing(1),
     },
     logoButton: {
       "&:hover": {
@@ -81,44 +76,45 @@ const Navbar = (props) => {
         "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",
     },
     // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
     },
   }));
 
   const { window } = props;
-  const classes = useStyles();
   const theme = useTheme();
-
+  const classes = useStyles(theme);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   //Menu related staff
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(false);
   const open = Boolean(anchorEl);
   const [menuContent, setMenuContent] = React.useState(null);
-  const handleClick = async (menuCont) => {
-    await setMenuContent(menuCont);
+
+  const handleClick = (menuCont) => {
     setAnchorEl(true);
+    setMenuContent(menuCont);
   };
-  const handleClose = async () => {
-    setAnchorEl(null);
+
+  const handleClose = () => {
+    setAnchorEl(false);
   };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <>
-      <AppBar color="inherit" position="fixed" className="navbar py-0">
-        <div className="container-fluid justify-content-between p-0">
-          <MenuIconAndLogo
-            classes={classes}
-            handleDrawerToggle={handleDrawerToggle}
-          />
+    <React.Fragment>
+      <AppBar
+        color="inherit"
+        className="navbar py-0"
+        style={{ position: "fixed" }}
+      >
+        <Grid className="container-fluid justify-content-between p-0">
+          <MenuIconAndLogo handleDrawerToggle={handleDrawerToggle} />
           <SearchForm />
           <div className="right-side-nav-content my-1 px-2 nav-items">
             <li id="open-search">
@@ -133,7 +129,6 @@ const Navbar = (props) => {
             <li>
               <Tooltip title="Create">
                 <IconButton
-                  className={``}
                   color="inherit"
                   onClick={() => handleClick(<CreateMenuContent />)}
                 >
@@ -186,20 +181,23 @@ const Navbar = (props) => {
                   onClick={() =>
                     handleClick(<AccountMenuContent closeMenu={handleClose} />)
                   }
-                  className="p-2"
+                  size="small"
                 >
                   <AccountCircleOutlinedIcon fontSize="large" />
                 </IconButton>
               </Tooltip>
             </li>
           </div>
-        </div>
+        </Grid>
       </AppBar>
 
       {/* Menu or dropdown menu */}
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {menuContent}
-      </Menu>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        children={menuContent}
+      />
 
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
       <Hidden smUp implementation="css">
@@ -215,14 +213,11 @@ const Navbar = (props) => {
           }}
         >
           {drawerContent(
-            <MenuIconAndLogo
-              classes={classes}
-              handleDrawerToggle={handleDrawerToggle}
-            />
+            <MenuIconAndLogo handleDrawerToggle={handleDrawerToggle} />
           )}
         </SwipeableDrawer>
       </Hidden>
-    </>
+    </React.Fragment>
   );
 };
 export default Navbar;

@@ -1,12 +1,6 @@
 import React from "react";
-import { TextField, Grid } from "@mui/material";
-import Link from "@material-ui/core/Link";
-import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { TextField, Grid, Link } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import PhoneField from "react-phone-input-material-ui";
 import "react-phone-input-material-ui/lib/style.css";
 
@@ -82,25 +76,14 @@ const PersonnalInfo = () => {
         </p>
       </Grid>
       <Grid item xs={12}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            disableToolbar
-            className="p-0"
-            required
-            fullWidth
-            inputVariant="outlined"
-            format="MM/dd/yyyy"
-            id="birthdate"
-            name="birthdate"
-            placeholder="MM/DD/YYYY"
-            value={selectedDate}
-            onChange={handleDateChange}
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-            autoComplete="bday"
-          />
-        </MuiPickersUtilsProvider>
+        <DatePicker
+          label="Date Of Birth"
+          value={selectedDate}
+          renderInput={(params) => (
+            <TextField fullWidth required autoComplete="bday" {...params} />
+          )}
+          onChange={handleDateChange}
+        />
       </Grid>
     </Grid>
   );

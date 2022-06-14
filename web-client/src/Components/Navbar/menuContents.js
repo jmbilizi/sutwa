@@ -2,12 +2,11 @@ import React from "react";
 import { ModalLink } from "react-router-modal-gallery";
 import {
   Divider,
-  Link,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   AccountCircle as AccountCircleIcon,
   Mail as MailIcon,
@@ -18,9 +17,10 @@ import {
   Place as PlaceIcon,
   AddBoxOutlined as AddBoxOutlinedIcon,
   Announcement as AnnouncementIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@mui/styles";
+import Link from "next/link";
 
 export const AccountMenuContent = ({ closeMenu }) => {
   const useStyles = makeStyles((theme) => ({
@@ -50,12 +50,18 @@ export const AccountMenuContent = ({ closeMenu }) => {
         backgroundColor: "#E8E8E8",
       },
     },
+    footerLinks: {
+      "&:hover": {
+        textDecoration: "underline",
+        cursor: "pointer",
+      },
+    },
   }));
-
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   return (
-    <>
+    <React.Fragment>
       <div className="px-3">
         content that are anchored to the left or right edge of the screen.
         Navigation drawers provide access to destinations in your app. Side
@@ -66,33 +72,62 @@ export const AccountMenuContent = ({ closeMenu }) => {
       </div>
       <Divider className="my-3" />
       <div className="d-grid gap-2 lead px-3">
-        <ModalLink
-          className={`${classes.sutwaBtn2} btn-default border text-center p-2`}
-          onClick={closeMenu}
-          to="/account/signup"
-        >
-          Sign up
-        </ModalLink>
-        <ModalLink
-          className={`${classes.sutwaBtn1} btn-default text-center p-2`}
-          onClick={closeMenu}
-          to="/account/login"
-        >
-          Log in
-        </ModalLink>
+        <Link href="#" as="/account/signup">
+          <span
+            className={`${classes.sutwaBtn2} btn-default border text-center p-2`}
+            onClick={closeMenu}
+          >
+            Sign up
+          </span>
+        </Link>
+        <Link href="#" as="/account/login">
+          <span
+            className={`${classes.sutwaBtn1} btn-default text-center p-2`}
+            onClick={closeMenu}
+          >
+            Log in
+          </span>
+        </Link>
       </div>
       <Divider className="my-3" />
-      <div className="mx-3 mb-2">
-        <small>
-          <Link href="#">Language(EN US)</Link>
-        </small>
-        <small className="d-flex gap-2 float-end sutwa-apps">
-          <Link href="/help">Help</Link>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-        </small>
+      <div className="mx-3 mb-2 list-inline">
+        <Link href="#">
+          <small
+            className={`list-inline-item ${classes.footerLinks}`}
+            onClick={closeMenu}
+          >
+            Language(EN US)
+          </small>
+        </Link>
+
+        <span className="d-flex gap-1 float-end">
+          <Link href="#">
+            <small
+              className={`list-inline-item ${classes.footerLinks}`}
+              onClick={closeMenu}
+            >
+              Privacy
+            </small>
+          </Link>
+          <Link href="#">
+            <small
+              className={`list-inline-item ${classes.footerLinks}`}
+              onClick={closeMenu}
+            >
+              Terms
+            </small>
+          </Link>
+          <Link href="#">
+            <small
+              className={`list-inline-item ${classes.footerLinks}`}
+              onClick={closeMenu}
+            >
+              Help
+            </small>
+          </Link>
+        </span>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -105,8 +140,8 @@ export const GeneralNotificationsMenuContent = () => {
       },
     },
   }));
-
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   return (
     <List className="p-2">
@@ -125,7 +160,7 @@ export const GeneralNotificationsMenuContent = () => {
 };
 
 export const MessageNotificationsMenuContent = () => {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
         backgroundColor: "#E8E8E8",
@@ -133,9 +168,8 @@ export const MessageNotificationsMenuContent = () => {
       },
     },
   }));
-
-  const classes = useStyles();
-
+  const theme = useTheme();
+  const classes = useStyles(theme);
   return (
     <List className="p-2">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((Text, Index) => (
@@ -143,7 +177,7 @@ export const MessageNotificationsMenuContent = () => {
           button
           key={Index}
           style={{ borderRadius: "5px" }}
-          className={`${classes.hover}`}
+          className={`${classes.hover} p-2`}
         >
           <ListItemText primary={`Message ${Text}`} />
         </ListItem>
@@ -153,7 +187,7 @@ export const MessageNotificationsMenuContent = () => {
 };
 
 export const SutwAppsMenuContent = () => {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
         backgroundColor: "#E8E8E8",
@@ -161,10 +195,10 @@ export const SutwAppsMenuContent = () => {
       },
     },
   }));
-
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
   return (
-    <List className="row p-2">
+    <List className="row mx-2">
       {[
         {
           name: "Account",
@@ -227,16 +261,16 @@ export const SutwAppsMenuContent = () => {
           href: "/clubs",
         },
       ].map((service, Index) => (
-        <Link
-          key={Index}
-          className={`${classes.hover} col-4 text-center py-3`}
-          href={service.href}
-          style={{ textDecoration: "inherit", color: "inherit" }}
-        >
-          {service.icon}
-          <label className="d-block pt-2">
-            <small>{service.name}</small>
-          </label>
+        <Link key={Index} href={service.href}>
+          <span
+            className={`${classes.hover} col-4 text-center py-3`}
+            style={{ textDecoration: "inherit", color: "inherit" }}
+          >
+            {service.icon}
+            <label className="d-block pt-2">
+              <small>{service.name}</small>
+            </label>
+          </span>
         </Link>
       ))}
     </List>
@@ -244,7 +278,7 @@ export const SutwAppsMenuContent = () => {
 };
 
 export const CreateMenuContent = () => {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
         backgroundColor: "#E8E8E8",
@@ -252,11 +286,11 @@ export const CreateMenuContent = () => {
       },
     },
   }));
-
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   return (
-    <List className="mx-2">
+    <List className="p-2">
       {[
         {
           name: "Post",

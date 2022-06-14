@@ -1,3 +1,5 @@
-import ClubProfilePage from "./Profile";
+import * as React from "react";
 
-export { ClubProfilePage };
+export default function Club() {
+  return <div>Club Home Page</div>;
+}

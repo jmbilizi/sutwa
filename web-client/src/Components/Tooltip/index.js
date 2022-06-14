@@ -1,8 +1,18 @@
 import React from "react";
-import MaterialUITooltip from "@material-ui/core/Tooltip";
+import MaterialUITooltip from "@mui/material/Tooltip";
 
 function Tooltip({ children, title }) {
-  return <MaterialUITooltip title={title}>{children}</MaterialUITooltip>;
+  return (
+    <MaterialUITooltip
+      title={
+        <small className="lead px-1" style={{ fontSize: "15px" }}>
+          {title}
+        </small>
+      }
+    >
+      {children}
+    </MaterialUITooltip>
+  );
 }
 
 Tooltip.propTypes = {

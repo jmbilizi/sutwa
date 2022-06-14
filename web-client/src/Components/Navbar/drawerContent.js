@@ -4,9 +4,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@material-ui/core";
+} from "@mui/material";
 
-import { MoveToInbox as InboxIcon, Mail as MailIcon } from "@material-ui/icons";
+import {
+  MoveToInbox as InboxIcon,
+  Mail as MailIcon,
+} from "@mui/icons-material";
 
 export const drawerContent = (menuIconAndLogo) => (
   <div>

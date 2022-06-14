@@ -1,7 +1,8 @@
 import React from "react";
+import { Tab, Box, Tabs as Tablist } from "@mui/material";
+import { makeStyles, useTheme } from "@mui/styles";
+import { TabContext, TabPanel } from "@mui/lab";
 import Jambotron from "../../Components/Jambotron";
-import { Tab, Box, makeStyles, Tabs as Tablist } from "@material-ui/core";
-import { TabContext, TabPanel } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   customTabStyle: {
@@ -28,8 +29,8 @@ export const Tabs = ({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   return (
     <TabContext value={value}>

@@ -1,8 +1,9 @@
 import React from "react";
-import Title from "../../../Components/Title";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "@mui/styles";
+import { Button } from "@mui/material";
+import { useRouter } from "next/router";
 import PersonnalInfo from "./PersonnalInfo";
+import Title from "../../../Components/Title";
 
 //signup steps
 // import Stepper from "@material-ui/core/Stepper";
@@ -51,7 +52,7 @@ const Signup = () => {
   const steps = ["Personnel Info", "Password", "Confirmation", "Status"];
   const [activeStep, setActiveStep] = React.useState(0);
   const classes = useStyles();
-
+  const router = useRouter();
   function getStepContent(step) {
     switch (step) {
       case 0:

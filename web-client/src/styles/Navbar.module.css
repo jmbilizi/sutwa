@@ -8,9 +8,6 @@
   margin-block: 7px;
 }
 
-.right-side-nav-content {
-}
-
 .left-side-nav-content {
   padding-block: 5px;
 }
@@ -48,30 +45,3 @@
     visibility: hidden !important;
   }
 }
-
-/* #search-content input[type="text"] {
-  border: solid 1px silver;
-  padding-left: 15px;
-  font-size: 17px;
-  float: left;
-  width: calc(100% - (185px));
-  height: 32px;
-  background: white;
-} */
-
-/* Style the submit button */
-/* #search-content button {
-  width: 65px;
-  height: 32px;
-  background: #f1f1f1;
-  font-size: 17px;
-  border: none;
-  border-top: solid 1px silver;
-  border-bottom: solid 1px silver;
-  border-right: solid 1px silver;
-  cursor: pointer;
-} */
-
-/* #search-content button:hover {
-  background: #f8f8f8;
-} */

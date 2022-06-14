@@ -3,7 +3,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import {
   KeyboardBackspace as KeyboardBackspaceIcon,
   Mic as MicIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 // custom components
 import Tooltip from "../Tooltip";
 // import { IconButton, Grid } from "@material-ui/core";

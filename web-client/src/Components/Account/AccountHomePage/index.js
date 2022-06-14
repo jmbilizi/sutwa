@@ -1,10 +1,12 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import { ModalLink } from "react-router-modal-gallery";
+import * as React from "react";
+import { Grid, IconButton } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Link from "next/link";
+import { useRouter } from "next/router";
+// Modal
+import Modal from "../../Modal";
+import AccountLoginPage from "../../Account/AccountLoginPage";
+import AccountSignupPage from "../../Account/AccountSignupPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,6 +86,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     height: "50px",
   },
+  footerLinks: {
+    "&:hover": {
+      textDecoration: "underline",
+      cursor: "pointer",
+    },
+  },
 }));
 
 const footer = [
@@ -153,68 +161,90 @@ const footer = [
   },
 ];
 
-export default function Home(props) {
+export default function AccountHomePage() {
   const classes = useStyles();
+  const router = useRouter();
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid container>
-        <Grid item xs={false} sm={6} md={7} className={classes.image} />
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={5}
-          elevation={5}
-          className={classes.paper}
-        >
-          <div className="mx-4 my-5">
-            <IconButton
-              style={{
-                fontSize: "50px",
-                color: "white",
-                fontWeight: "900",
-              }}
-              className={`${classes.sutwaLogo} py-1 px-4`}
-              href="/"
-            >
-              S
-            </IconButton>
-
-            <h1 className="display-2 my-4">Entertaining Now</h1>
-            <h1 className="display-6 mb-3">
-              Join <span className={classes.logoLetter}>Sutwa</span> Today.
-            </h1>
-            <div className="d-grid gap-2 col-md-8 lead">
-              <ModalLink
-                className={`${classes.sutwaBtn2} btn-default border text-center p-2 mb-3`}
-                to="/account/signup"
+    <React.Fragment>
+      <Modal
+        open={router.asPath === "/account/login"}
+        scroll="body"
+        onExited={() => router.back()}
+      >
+        <AccountLoginPage />
+      </Modal>
+      <Modal
+        open={router.asPath === "/account/signup"}
+        scroll="body"
+        onExited={() => router.back()}
+      >
+        <AccountSignupPage />
+      </Modal>
+      <Grid container component="main" className={classes.root}>
+        <Grid container>
+          <Grid item xs={false} sm={6} md={7} className={classes.image} />
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={5}
+            elevation={5}
+            className={classes.paper}
+          >
+            <div className="mx-4 my-5">
+              <IconButton
+                style={{
+                  fontSize: "50px",
+                  color: "white",
+                  fontWeight: "900",
+                }}
+                className={`${classes.sutwaLogo} py-1 px-4`}
+                href="/"
               >
-                Sign up
-              </ModalLink>
+                S
+              </IconButton>
 
-              <ModalLink
-                className={`${classes.sutwaBtn1} btn-default text-center p-2`}
-                to="/account/login"
-              >
-                Log in
-              </ModalLink>
+              <h1 className="display-2 my-4">Entertaining Now</h1>
+              <h1 className="display-6 mb-3">
+                Join <span className={classes.logoLetter}>Sutwa</span> Today.
+              </h1>
+              <div className="d-grid gap-2 col-md-8 lead">
+                <Link href="/account" as="/account/signup">
+                  <span
+                    className={`${classes.sutwaBtn2} btn-default border text-center p-2 mb-3`}
+                  >
+                    Sign up
+                  </span>
+                </Link>
+
+                <Link href="/account" as="/account/login">
+                  <span
+                    className={`${classes.sutwaBtn1} btn-default text-center p-2`}
+                  >
+                    Log in
+                  </span>
+                </Link>
+              </div>
             </div>
+          </Grid>
+        </Grid>
+        <Grid
+          style={{ fontSize: "13px" }}
+          className={`justify-content-center bg-light fixed-bottom text-center py-3 footer`}
+        >
+          <div className="list-inline">
+            {footer.map((element) => (
+              <Link href={element.path} key={element.name}>
+                <span
+                  className={`list-inline-item mx-2 ${classes.footerLinks}`}
+                >
+                  {element.name}
+                </span>
+              </Link>
+            ))}
           </div>
         </Grid>
       </Grid>
-      <Grid
-        style={{ fontSize: "13px" }}
-        className={`justify-content-center bg-light fixed-bottom text-center py-3 footer`}
-      >
-        <div className="list-inline">
-          {footer.map((element) => (
-            <Link className="list-inline-item mx-2" href={element.path}>
-              {element.name}
-            </Link>
-          ))}
-        </div>
-      </Grid>
-    </Grid>
+    </React.Fragment>
   );
 }

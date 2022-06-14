@@ -2,7 +2,7 @@ import {
   Search as SearchIcon,
   KeyboardBackspace as KeyboardBackspaceIcon,
   Mic as MicIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 //custom components
 import Tooltip from "../Tooltip";

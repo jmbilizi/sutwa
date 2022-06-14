@@ -92,11 +92,7 @@ const ClubProfileData = {
 };
 
 const ClubProfilePage = () => {
-  return (
-    <Layouts.MainLayout>
-      <ProfileComponent profileData={ClubProfileData} />
-    </Layouts.MainLayout>
-  );
+  return <ProfileComponent profileData={ClubProfileData} />;
 };
 
 export default ClubProfilePage;

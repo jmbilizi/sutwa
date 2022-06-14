@@ -1,13 +1,9 @@
 import React from "react";
-import Jambotron from "../../Components/Jambotron";
-import { IconButton } from "@material-ui/core";
+import { IconButton } from "@mui/material";
+import { ThumbUp as LikeIcon } from "@material-ui/icons";
 import { TabsWithLink } from "../Tabs";
-import {
-  ThumbUp as LikeIcon,
-  // ThumbDownIcon as UnlikeIcon,
-} from "@material-ui/icons";
+import Jambotron from "../../Components/Jambotron";
 import "./style.scss";
-// import { Tabs } from "../Tabs";
 
 const Profile = ({ profileData }) => {
   const { profileInfo, tabContext } = profileData;

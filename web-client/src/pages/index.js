@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as Layouts from "../Components/Layouts";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../_Store/Reduce/actionTypes/_index";
 import numVerifyCountries from "../Helpers/numVerifyCountries.json";
@@ -32,7 +31,7 @@ const Home = () => {
     : [];
 
   return (
-    <Layouts.MainLayout>
+    <React.Fragment>
       <div className="container mt-5 pt-5">
         <div className="counter-app">
           <h2>Counter App Redux class</h2>
@@ -89,7 +88,7 @@ const Home = () => {
         </div>
         <ol className="code">
           {supportedCountries.map((c) => (
-            <li>
+            <li key={c.name.common}>
               {c.name.common} - {c.cca2} -{" "}
               {c.idd.suffixes.length === 1
                 ? c.idd.root.concat(c.idd.suffixes[0])
@@ -99,7 +98,7 @@ const Home = () => {
           ))}
         </ol>
       </div>
-    </Layouts.MainLayout>
+    </React.Fragment>
   );
 };
 

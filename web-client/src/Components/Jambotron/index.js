@@ -1,6 +1,6 @@
 import React from "react";
 
-const Jambotron = ({ children, bg, my, inlineBstStyle, ...rest }) => {
+const Jambotron = ({ children, bg, inlineBstStyle, ...rest }) => {
   return (
     <React.Fragment>
       <div

@@ -1,5 +1,6 @@
-import Home from "./Home";
-import Signup from "./Signup";
-import Signin from "./Signin";
+import * as React from "react";
+import AccountHomePage from "../../Components/Account/AccountHomePage";
 
-export { Home, Signup, Signin };
+export default function Home() {
+  return <AccountHomePage />;
+}

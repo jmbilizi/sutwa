@@ -6,9 +6,11 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import { ModalLink } from "react-router-modal-gallery";
-import { makeStyles } from "@material-ui/core/styles";
-import Title from "../../../Components/Title";
+// import { ModalLink } from "react-router-modal-gallery";
+import { makeStyles } from "@mui/styles";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Title from "../../Title";
 import { useRequest } from "../../../Hooks/useRequest";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,17 +44,20 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     "&:hover": {
       textDecoration: "underline",
+      cursor: "pointer",
     },
+    color: "#0d6efd",
   },
 }));
 
-const Signin = ({ history }) => {
+const Signin = () => {
   const [state, setState] = useState({
     phoneOrEmailOrSutwaID: null,
     password: null,
   });
 
   const { phoneOrEmailOrSutwaID, password } = state;
+  const router = useRouter();
 
   const { doRequest, errors } = useRequest({
     url: "https://localhost:8080/signin",
@@ -61,7 +66,7 @@ const Signin = ({ history }) => {
       phoneOrEmailOrSutwaID,
       password,
     },
-    onSuccess: () => history.push("/"),
+    onSuccess: () => router.push("/"),
   });
 
   const handleChange = (name) => (event) => {
@@ -79,7 +84,7 @@ const Signin = ({ history }) => {
     <div>
       <Title label="Sign In" />
       {errors}
-      <div style={{ marginBottom: "100px" }} className={classes.paper}>
+      <div style={{ marginBottom: "50px" }} className={classes.paper}>
         <Grid className={classes.form} container spacing={3} noValidate>
           <Grid item xs={12}>
             <TextField
@@ -107,7 +112,8 @@ const Signin = ({ history }) => {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              className="p-2"
+              control={<Checkbox value={true} color="primary" />}
               label="Remember me"
             />
           </Grid>
@@ -124,14 +130,24 @@ const Signin = ({ history }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <ModalLink className={classes.modalLink} to="#">
-                  Forgot password?
-                </ModalLink>
+                <Link href="#">
+                  <span className={classes.modalLink}>Forgot password?</span>
+                </Link>
               </Grid>
               <Grid item>
-                <ModalLink className={classes.modalLink} to="/account/signup">
-                  {"Don't have an account? Sign Up"}
-                </ModalLink>
+                {router.asPath === "/account/login" ? (
+                  <Link href="/account" as="/account/signup">
+                    <pre className={classes.modalLink}>
+                      Don't have an account? Sign Up
+                    </pre>
+                  </Link>
+                ) : (
+                  <Link className={classes.modalLink} href="/account/signup">
+                    <span className={classes.modalLink}>
+                      Don't have an account? Sign Up
+                    </span>
+                  </Link>
+                )}
               </Grid>
             </Grid>
           </Grid>
