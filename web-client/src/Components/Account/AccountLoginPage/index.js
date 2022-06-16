@@ -6,7 +6,6 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-// import { ModalLink } from "react-router-modal-gallery";
 import { makeStyles } from "@mui/styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -112,7 +111,6 @@ const Signin = () => {
               autoComplete="current-password"
             />
             <FormControlLabel
-              className="p-2"
               control={<Checkbox value={true} color="primary" />}
               label="Remember me"
             />
@@ -131,21 +129,21 @@ const Signin = () => {
             <Grid container>
               <Grid item xs>
                 <Link href="#">
-                  <span className={classes.modalLink}>Forgot password?</span>
+                  <small className={classes.modalLink}>Forgot password?</small>
                 </Link>
               </Grid>
               <Grid item>
                 {router.asPath === "/account/login" ? (
                   <Link href="/account" as="/account/signup">
-                    <pre className={classes.modalLink}>
+                    <small className={classes.modalLink}>
                       Don't have an account? Sign Up
-                    </pre>
+                    </small>
                   </Link>
                 ) : (
                   <Link className={classes.modalLink} href="/account/signup">
-                    <span className={classes.modalLink}>
+                    <small className={classes.modalLink}>
                       Don't have an account? Sign Up
-                    </span>
+                    </small>
                   </Link>
                 )}
               </Grid>

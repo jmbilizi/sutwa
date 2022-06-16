@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button } from "@mui/material";
-import { useRouter } from "next/router";
 import PersonnalInfo from "./PersonnalInfo";
 import Title from "../../../Components/Title";
 
@@ -45,6 +44,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     height: "50px",
   },
+  modalLink: {
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+      cursor: "pointer",
+    },
+    color: "#0d6efd",
+  },
 }));
 
 const Signup = () => {
@@ -52,11 +59,10 @@ const Signup = () => {
   const steps = ["Personnel Info", "Password", "Confirmation", "Status"];
   const [activeStep, setActiveStep] = React.useState(0);
   const classes = useStyles();
-  const router = useRouter();
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <PersonnalInfo />;
+        return <PersonnalInfo classes={classes} />;
       case 1:
         return <h>Password</h>;
       case 2:
@@ -74,7 +80,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Title label="Sign Up" />
       {/* <Stepper activeStep={activeStep} className={classes.stepper}>
           {steps.map((label) => (
@@ -116,9 +122,7 @@ const Signup = () => {
           {activeStep === steps.length - 1 ? "Place order" : "Next"}
         </Button>
       </div>
-      {/* )}
-        </React.Fragment> */}
-    </div>
+    </React.Fragment>
   );
 };
 

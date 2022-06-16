@@ -1,10 +1,10 @@
 import React from "react";
-import { TextField, Grid, Link } from "@mui/material";
+import { TextField, Grid } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import PhoneField from "react-phone-input-material-ui";
 import "react-phone-input-material-ui/lib/style.css";
 
-const PersonnalInfo = () => {
+const PersonnalInfo = ({ classes }) => {
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [email, setEmail] = React.useState(true);
   const [phone, setPhone] = React.useState("");
@@ -58,14 +58,19 @@ const PersonnalInfo = () => {
             onChange={(value) => setPhone(value)}
             inputProps={{
               label: "Phone Number",
+              name: "phone",
               required: true,
+              fullWidth: true,
             }}
             masks={{ bi: ".. .. .. ..", cd: "... ... ..." }}
           />
         )}
-        <Link className="btn p-0 mt-1" onClick={handleEmail}>
+        <span
+          className={`btn p-0 mt-1 ${classes.modalLink}`}
+          onClick={handleEmail}
+        >
           Use {email ? "phone" : "email"} instead
-        </Link>
+        </span>
       </Grid>
 
       <Grid item xs={12} className="pb-0">

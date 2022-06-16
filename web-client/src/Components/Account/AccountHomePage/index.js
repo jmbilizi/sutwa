@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundImage:
         "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",
+      cursor: "pointer",
     },
   },
   sutwaBtn2: {
@@ -66,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     "&:hover": {
       backgroundColor: "#E8E8E8",
+      cursor: "pointer",
     },
   },
 

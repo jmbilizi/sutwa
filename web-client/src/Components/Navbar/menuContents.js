@@ -1,5 +1,4 @@
 import React from "react";
-import { ModalLink } from "react-router-modal-gallery";
 import {
   Divider,
   List,
