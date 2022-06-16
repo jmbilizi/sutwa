@@ -133,19 +133,11 @@ const Signin = () => {
                 </Link>
               </Grid>
               <Grid item>
-                {router.asPath === "/account/login" ? (
-                  <Link href="/account" as="/account/signup">
-                    <small className={classes.modalLink}>
-                      Don't have an account? Sign Up
-                    </small>
-                  </Link>
-                ) : (
-                  <Link className={classes.modalLink} href="/account/signup">
-                    <small className={classes.modalLink}>
-                      Don't have an account? Sign Up
-                    </small>
-                  </Link>
-                )}
+                <Link href="/account" as="/account/signup">
+                  <small className={classes.modalLink}>
+                    Don't have an account? Sign Up
+                  </small>
+                </Link>
               </Grid>
             </Grid>
           </Grid>

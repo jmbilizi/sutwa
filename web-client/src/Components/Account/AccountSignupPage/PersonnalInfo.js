@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Grid } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import PhoneField from "react-phone-input-material-ui";
 import "react-phone-input-material-ui/lib/style.css";
 
 const PersonnalInfo = ({ classes }) => {
-  const [selectedDate, setSelectedDate] = React.useState(null);
-  const [email, setEmail] = React.useState(true);
-  const [phone, setPhone] = React.useState("");
+  const [isEmail, setEmail] = useState(true);
+  const [state, setState] = useState({
+    firstName: null,
+    lastName: null,
+    email: null,
+    phone: null,
+    dateOfBirth: null,
+  });
 
-  const handleEmail = () => setEmail(!email);
+  const handleIsEmail = () => setEmail(!isEmail);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleChange = (name) => (event) => {
+    setState({ ...state, error: "", [name]: event.target.value });
   };
 
+  const { email, phone, dateOfBirth } = state;
   return (
     <Grid container spacing={3} noValidate>
       <Grid item xs={12} sm={6}>
@@ -23,7 +29,8 @@ const PersonnalInfo = ({ classes }) => {
           fullWidth
           id="firstname"
           label="First Name"
-          name="firstname"
+          name="firstName"
+          onChange={handleChange("firstName")}
           autoComplete="first name"
           autoFocus
         />
@@ -34,18 +41,21 @@ const PersonnalInfo = ({ classes }) => {
           fullWidth
           id="lastname"
           label="Last Name"
-          name="lastname"
+          name="lastName"
+          onChange={handleChange("lastName")}
           autoComplete="last name"
         />
       </Grid>
       <Grid item xs={12}>
-        {email ? (
+        {isEmail ? (
           <TextField
             required
             fullWidth
             id="email"
             label="Email Address"
+            value={email}
             name="email"
+            onChange={handleChange("email")}
             autoComplete="email"
           />
         ) : (
@@ -55,7 +65,7 @@ const PersonnalInfo = ({ classes }) => {
             enableSearch
             countryCodeEditable={false}
             country="us"
-            onChange={(value) => setPhone(value)}
+            onChange={handleChange("phone")}
             inputProps={{
               label: "Phone Number",
               name: "phone",
@@ -67,9 +77,9 @@ const PersonnalInfo = ({ classes }) => {
         )}
         <span
           className={`btn p-0 mt-1 ${classes.modalLink}`}
-          onClick={handleEmail}
+          onClick={handleIsEmail}
         >
-          Use {email ? "phone" : "email"} instead
+          Use {isEmail ? "phone" : "email"} instead
         </span>
       </Grid>
 
@@ -83,11 +93,12 @@ const PersonnalInfo = ({ classes }) => {
       <Grid item xs={12}>
         <DatePicker
           label="Date Of Birth"
-          value={selectedDate}
+          name="dateOfBirth"
+          value={dateOfBirth}
           renderInput={(params) => (
             <TextField fullWidth required autoComplete="bday" {...params} />
           )}
-          onChange={handleDateChange}
+          onChange={handleChange("dateOfBirth")}
         />
       </Grid>
     </Grid>
