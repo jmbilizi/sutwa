@@ -12,7 +12,7 @@ const AccountAction = ({ accountAction }) => {
         <Modal
           open={true}
           scroll="body"
-          onExited={() => router.push("/account")}
+          onExited={() => router.back()}
           children={<AccountLoginPage />}
         />
       </React.Fragment>
@@ -24,7 +24,7 @@ const AccountAction = ({ accountAction }) => {
         <Modal
           open={true}
           scroll="body"
-          onExited={() => router.push("/account")}
+          onExited={() => router.back()}
           children={<AccountSignupPage />}
         />
       </React.Fragment>
