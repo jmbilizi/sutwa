@@ -1,18 +1,32 @@
 import React from "react";
 import { IconButton } from "@mui/material";
-import { ThumbUp as LikeIcon } from "@material-ui/icons";
+import { ThumbUp as LikeIcon } from "@mui/icons-material";
+import { makeStyles, useTheme } from "@mui/styles";
 import { TabsWithLink } from "../Tabs";
 import Jambotron from "../../Components/Jambotron";
-import "./style.scss";
+// import "./style.scss";
 
 const Profile = ({ profileData }) => {
   const { profileInfo, tabContext } = profileData;
+  const useStyles = makeStyles((theme) => ({
+    coverContainer: {
+      [theme.breakpoints.down("lg")]: {
+        paddingBottom: "360px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        paddingBottom: "150px",
+      },
+    },
+  }));
+
+  const them = useTheme();
+  const classes = useStyles(them);
 
   return (
     <>
       <Jambotron
         style={{ backgroundColor: "white" }}
-        inlineBstStyle="container-fluid mt-0 position-relative coverContainer"
+        inlineBstStyle={`container-fluid mt-0 position-relative ${classes.coverContainer}`}
       >
         <img
           src={profileInfo.coverImage}
