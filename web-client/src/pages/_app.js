@@ -30,7 +30,7 @@ function App(props) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Head>
-            <title>Sutwa App</title>
+            <title>Sutwa</title>
           </Head>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             {pathname === "/account" ||
