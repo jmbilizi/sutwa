@@ -23,7 +23,7 @@ const Profile = ({ profileData }) => {
   const classes = useStyles(them);
 
   return (
-    <>
+    <React.Fragment>
       <Jambotron
         style={{ backgroundColor: "white" }}
         inlineBstStyle={`container-fluid mt-0 position-relative ${classes.coverContainer}`}
@@ -35,8 +35,8 @@ const Profile = ({ profileData }) => {
           alt="Cover"
         />
         <Jambotron inlineBstStyle="container-fluid px-lg-4 mt-3 position-absolute bottom-0">
-          <div class="row align-items-end">
-            <div class="col">
+          <div className="row align-items-end">
+            <div className="col">
               <img
                 src={profileInfo.image}
                 className="rounded-circle border border-white border-5"
@@ -44,7 +44,7 @@ const Profile = ({ profileData }) => {
                 alt="Profile"
               />
             </div>
-            <div class="col-lg-7 d-grid justify-content-lg-start py-2">
+            <div className="col-lg-7 d-grid justify-content-lg-start py-2">
               <div
                 style={{ fontSize: "35px" }}
                 className="fw-bold d-lg-flex mb-2"
@@ -56,16 +56,22 @@ const Profile = ({ profileData }) => {
               </p>
               <p className="d-lg-flex mb-0">{profileInfo.fewParticipants}</p>
             </div>
-            <div class="col d-xlg-flex">
+            <div className="col d-xlg-flex">
               <div className="p-1">
                 <IconButton>
                   <LikeIcon />
                 </IconButton>
               </div>
-              <button class="btn btn-outline-secondary mx-2 px-4" type="button">
+              <button
+                className="btn btn-outline-secondary mx-2 px-4"
+                type="button"
+              >
                 Follow
               </button>
-              <button class="btn btn-outline-primary my-2 px-3" type="button">
+              <button
+                className="btn btn-outline-primary my-2 px-3"
+                type="button"
+              >
                 Message
               </button>
             </div>
@@ -80,7 +86,7 @@ const Profile = ({ profileData }) => {
         scrollButtons="auto"
         tabContext={tabContext}
       />
-    </>
+    </React.Fragment>
   );
 };
 
