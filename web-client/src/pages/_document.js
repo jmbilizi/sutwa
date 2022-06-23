@@ -3,6 +3,7 @@ import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import theme from "../styles/MaterialUIFiles/theme";
 import createEmotionCache from "../styles/MaterialUIFiles/createEmotionCache";
+import { ServerStyleSheets } from "@mui/styles";
 
 export default class Document extends NextDocument {
   render() {
@@ -53,6 +54,9 @@ Document.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
+  // Render app and page and get the context of the page with collected side effects.
+  const sheets = new ServerStyleSheets();
+
   const originalRenderPage = ctx.renderPage;
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
@@ -64,7 +68,7 @@ Document.getInitialProps = async (ctx) => {
     originalRenderPage({
       enhanceApp: (App) =>
         function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />;
+          return sheets.collect(<App emotionCache={cache} {...props} />);
         },
     });
 
@@ -84,5 +88,10 @@ Document.getInitialProps = async (ctx) => {
   return {
     ...initialProps,
     emotionStyleTags,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement(),
+    ],
   };
 };
