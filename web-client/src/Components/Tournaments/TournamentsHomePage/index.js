@@ -1,5 +1,5 @@
 import * as React from "react";
 
-export default function Tournament() {
+export default function TournamentsHomePage() {
   return <div>Tournament Home Page</div>;
 }
