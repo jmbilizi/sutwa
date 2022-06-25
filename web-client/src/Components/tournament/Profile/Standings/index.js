@@ -1,6 +1,6 @@
 import React from "react";
 import { MenuItem, Select } from "@material-ui/core";
-import { Tabs } from "../../../../Components/Tabs";
+import { Tabs } from "../../../Tabs";
 
 const tabContext = {
   tabs: [
