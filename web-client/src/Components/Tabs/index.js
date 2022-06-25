@@ -89,6 +89,7 @@ export const TabsWithLink = ({
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
+    event.preventDefault();
     setValue(newValue);
   };
 
@@ -100,32 +101,38 @@ export const TabsWithLink = ({
         style={{ backgroundColor: "white" }}
         inlineBstStyle={inlineBstStyle}
       >
-        <Box>
-          <Tablist
-            {...rest}
-            value={value}
-            onChange={handleChange}
-            visibleScrollbar
-            // scrollButtons={false}
-            // allowScrollButtonsMobile
-            indicatorColor={"primary"}
-            aria-label="scrollable force tabs example"
-          >
-            {tabContext.tabs.map((tab) => (
-              <LinkTab
-                label={tab.label}
-                value={tab.value}
-                href={tab.url}
-                className={classes.customTabStyle}
-              />
-            ))}
-          </Tablist>
-        </Box>
+        <Jambotron
+          inlineBstStyle={`container-xl mt-0 position-relative px-lg-4`}
+        >
+          <Box>
+            <Tablist
+              {...rest}
+              value={value}
+              onChange={handleChange}
+              visibleScrollbar
+              // scrollButtons={false}
+              // allowScrollButtonsMobile
+              indicatorColor={"primary"}
+              aria-label="scrollable force tabs example"
+            >
+              {tabContext.tabs.map((tab) => (
+                <LinkTab
+                  label={tab.label}
+                  value={tab.value}
+                  href={tab.url}
+                  className={classes.customTabStyle}
+                />
+              ))}
+            </Tablist>
+          </Box>
+        </Jambotron>
       </Jambotron>
       {tabContext.tabPanels.map((tabPanel) => (
-        <TabPanel value={tabPanel.value} className={panelClassName}>
-          {tabPanel.component}
-        </TabPanel>
+        <Jambotron inlineBstStyle={`container-xl px-lg-4`}>
+          <TabPanel value={tabPanel.value} className={`mt-3 ${panelClassName}`}>
+            {tabPanel.component}
+          </TabPanel>
+        </Jambotron>
       ))}
     </TabContext>
   );

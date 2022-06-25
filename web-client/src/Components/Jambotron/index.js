@@ -4,7 +4,7 @@ const Jambotron = ({ children, bg, inlineBstStyle, ...rest }) => {
   return (
     <React.Fragment>
       <div
-        className={`position-relative overflow-hidden text-center px-0 bg-${bg} ${inlineBstStyle}`}
+        className={`position-relative overflow-hidden justify-content-lg-center text-center px-0 bg-${bg} ${inlineBstStyle}`}
         {...rest}
       >
         {children}

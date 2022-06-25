@@ -25,61 +25,65 @@ const Profile = ({ profileInfo, tabContext }) => {
     <React.Fragment>
       <Jambotron
         style={{ backgroundColor: "white" }}
-        inlineBstStyle={`container-fluid mt-0 position-relative ${classes.coverContainer}`}
+        inlineBstStyle="container-fluid"
       >
-        <img
-          src={profileInfo.coverImage}
-          className="px-lg-4 m-0"
-          style={{ height: "450px", width: "100vw" }}
-          alt="Cover"
-        />
-        <Jambotron inlineBstStyle="container-fluid px-lg-4 mt-3 position-absolute bottom-0">
-          <div className="row align-items-end">
-            <div className="col">
-              <img
-                src={profileInfo.image}
-                className="rounded-circle border border-white border-5"
-                style={{ height: "180px", width: "180px" }}
-                alt="Profile"
-              />
-            </div>
-            <div className="col-lg-7 d-grid justify-content-lg-start py-2">
-              <div
-                style={{ fontSize: "35px" }}
-                className="fw-bold d-lg-flex mb-2"
-              >
-                {profileInfo.name}
+        <Jambotron
+          inlineBstStyle={`container-xl mt-0 position-relative ${classes.coverContainer}`}
+        >
+          <img
+            src={profileInfo.coverImage}
+            className="rounded-3 w-100"
+            style={{ maxHeight: "470px" }}
+            alt="coverImage"
+          />
+          <div className="container-fluid px-lg-4 mt-3 position-absolute bottom-0">
+            <div className="row align-items-end mb-2">
+              <div className="col-lg-2">
+                <img
+                  src={profileInfo.image}
+                  className="rounded-circle border border-white border-5"
+                  style={{ height: "180px", width: "180px" }}
+                  alt="profileImage"
+                />
               </div>
-              <p className="fw-bolder text-muted d-lg-flex">
-                {profileInfo.people}
-              </p>
-              <p className="d-lg-flex mb-0">{profileInfo.fewParticipants}</p>
-            </div>
-            <div className="col d-xlg-flex">
-              <div className="p-1">
-                <IconButton>
-                  <LikeIcon />
-                </IconButton>
+              <div className="col-lg-7 py-2 ms-3">
+                <div
+                  style={{ fontSize: "35px" }}
+                  className="fw-bold d-lg-flex mb-2"
+                >
+                  {profileInfo.name}
+                </div>
+                <p className="fw-bolder text-muted d-lg-flex">
+                  {profileInfo.people}
+                </p>
+                <p className="d-lg-flex mb-0">{profileInfo.fewParticipants}</p>
               </div>
-              <button
-                className="btn btn-outline-secondary mx-2 px-4"
-                type="button"
-              >
-                Follow
-              </button>
-              <button
-                className="btn btn-outline-primary my-2 px-3"
-                type="button"
-              >
-                Message
-              </button>
+              <div className="col d-xlg-flex text-lg-end">
+                <div className="p-1">
+                  <IconButton>
+                    <LikeIcon />
+                  </IconButton>
+                </div>
+                <button
+                  className="btn btn-outline-secondary mx-2 px-4"
+                  type="button"
+                >
+                  Follow
+                </button>
+                <button
+                  className="btn btn-outline-primary my-2 px-3"
+                  type="button"
+                >
+                  Message
+                </button>
+              </div>
             </div>
+            <hr className="mt-lg-0 mb-0"></hr>
           </div>
-          <hr className="mt-lg-0 mb-0"></hr>
         </Jambotron>
       </Jambotron>
       <TabsWithLink
-        inlineBstStyle="container-fluid shadow-sm bottom px-lg-4"
+        inlineBstStyle="container-fluid shadow-sm bottom"
         panelClassName="px-0 pt-0 m-0"
         variant="scrollable"
         scrollButtons="auto"
