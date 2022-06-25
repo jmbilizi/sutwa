@@ -1,5 +1,8 @@
 /*search form style */
 /* Style the search field */
+body {
+  background-color: #f9f9f9;
+}
 
 #search-content {
   text-decoration: none;
