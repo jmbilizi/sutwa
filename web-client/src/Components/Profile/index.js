@@ -6,8 +6,7 @@ import { TabsWithLink } from "../Tabs";
 import Jambotron from "../../Components/Jambotron";
 // import "./style.scss";
 
-const Profile = ({ profileData }) => {
-  const { profileInfo, tabContext } = profileData;
+const Profile = ({ profileInfo, tabContext }) => {
   const useStyles = makeStyles((theme) => ({
     coverContainer: {
       [theme.breakpoints.down("lg")]: {
