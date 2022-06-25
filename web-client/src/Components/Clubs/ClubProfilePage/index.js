@@ -1,56 +1,47 @@
 import React from "react";
 import ProfileComponent from "../../Profile";
 
-const ClubProfileInfo = {
-  coverImage: "https://picsum.photos/1000/450?grayscale",
-  image: "https://picsum.photos/180?grayscale",
-  name: "New American FC",
-  people: "3.4K Friends . 12 Mutual",
-  //will add array of objects with image and url later that take you to the profile of the participant
-  fewParticipants: "Images Images",
-};
-
 const ClubProfileTabContext = {
   tabs: [
     {
       label: "About",
       value: "1",
-      url: "clubs/:id/about",
+      url: "[clubId]/about",
     },
     {
       label: "Members",
       value: "2",
-      url: "clubs/:id/members",
+      url: "[clubId]/members",
     },
     {
       label: "Teams",
       value: "3",
-      url: "clubs/:id/teams",
+      url: "[clubId]/teams",
     },
     {
       label: "Competitions",
       value: "4",
-      url: "clubs/:id/competitions",
+      url: "[clubId]/competitions",
     },
     {
       label: "Posts",
       value: "5",
-      url: "clubs/:id/posts",
+      url: "[clubId]/posts",
     },
     {
       label: "Photos",
       value: "6",
-      url: "clubs/:id/photos",
+      url: "[clubId]/photos",
     },
     {
       label: "Videos",
       value: "7",
-      url: "clubs/:id/videos",
+      url: "[clubId]/videos",
     },
     {
       label: "More",
       value: "8",
-      url: "clubs/:id/more",
+      url: "[clubId]/more",
     },
   ],
   tabPanels: [
@@ -89,10 +80,10 @@ const ClubProfileTabContext = {
   ],
 };
 
-export const ClubProfilePage = () => {
+export const ClubProfilePage = ({ clubProfileInfo }) => {
   return (
     <ProfileComponent
-      profileInfo={ClubProfileInfo}
+      profileInfo={clubProfileInfo}
       tabContext={ClubProfileTabContext}
     />
   );
