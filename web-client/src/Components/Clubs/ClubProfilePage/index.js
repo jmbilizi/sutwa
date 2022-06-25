@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileComponent from "../../Profile";
 
-const ProfileInfo = {
+const ClubProfileInfo = {
   coverImage: "https://picsum.photos/1000/450?grayscale",
   image: "https://picsum.photos/180?grayscale",
   name: "New American FC",
@@ -10,7 +10,7 @@ const ProfileInfo = {
   fewParticipants: "Images Images",
 };
 
-const TabContext = {
+const ClubProfileTabContext = {
   tabs: [
     {
       label: "About",
@@ -90,5 +90,10 @@ const TabContext = {
 };
 
 export const ClubProfilePage = () => {
-  return <ProfileComponent profileInfo={ProfileInfo} tabContext={TabContext} />;
+  return (
+    <ProfileComponent
+      profileInfo={ClubProfileInfo}
+      tabContext={ClubProfileTabContext}
+    />
+  );
 };

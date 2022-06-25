@@ -10,7 +10,7 @@ const MemberProfileInfo = {
   fewParticipants: "Images Images",
 };
 
-const MemberTabContext = {
+const MemberProfileTabContext = {
   tabs: [
     {
       label: "About",
@@ -84,7 +84,7 @@ const MemberTabContext = {
 const MemberProfilePage = () => {
   return (
     <ProfileComponent
-      tabContext={MemberTabContext}
+      tabContext={MemberProfileTabContext}
       profileInfo={MemberProfileInfo}
     />
   );
