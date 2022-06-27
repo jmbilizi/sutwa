@@ -166,7 +166,10 @@ export default function Navbar(props) {
                 <IconButton
                   color="inherit"
                   onClick={(event) =>
-                    handleClick(event, <SutwAppsMenuContent />)
+                    handleClick(
+                      event,
+                      <SutwAppsMenuContent closeMenu={handleClose} />
+                    )
                   }
                 >
                   <AppsIcon />

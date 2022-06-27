@@ -185,7 +185,7 @@ export const MessageNotificationsMenuContent = () => {
   );
 };
 
-export const SutwAppsMenuContent = () => {
+export const SutwAppsMenuContent = ({ closeMenu }) => {
   const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
@@ -264,6 +264,7 @@ export const SutwAppsMenuContent = () => {
           <span
             className={`${classes.hover} col-4 text-center py-3`}
             style={{ textDecoration: "inherit", color: "inherit" }}
+            onClick={closeMenu}
           >
             {service.icon}
             <label className="d-block pt-2">
