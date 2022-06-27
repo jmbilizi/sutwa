@@ -10,7 +10,6 @@ import {
   Hidden,
 } from "@mui/material";
 import {
-  //Menu as MenuIcon,
   Search as SearchIcon,
   Apps as AppsIcon,
   AddCircleOutline as AddCircleOutlineIcon,
@@ -19,7 +18,6 @@ import {
   MailOutline as MailOutlineIcon,
 } from "@mui/icons-material";
 import { makeStyles, useTheme } from "@mui/styles";
-// import { Helmet } from "react-helmet";
 
 //custom components
 import Tooltip from "../Tooltip";
@@ -48,9 +46,7 @@ function openSearch() {
   document.getElementById("back-arrow").style.visibility = "visible";
 }
 
-const Navbar = (props) => {
-  //material ui styles and classes
-
+export default function Navbar(props) {
   const drawerWidth = 240;
 
   const useStyles = makeStyles((themes) => ({
@@ -90,17 +86,18 @@ const Navbar = (props) => {
   };
 
   //Menu related staff
-  const [anchorEl, setAnchorEl] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [menuContent, setMenuContent] = React.useState(null);
 
-  const handleClick = (menuCont) => {
-    setAnchorEl(true);
+  const handleClick = (event, menuCont) => {
+    event.preventDefault();
+    setAnchorEl(event.currentTarget);
     setMenuContent(menuCont);
   };
 
   const handleClose = () => {
-    setAnchorEl(false);
+    setAnchorEl(null);
   };
 
   const container =
@@ -130,7 +127,7 @@ const Navbar = (props) => {
               <Tooltip title="Create">
                 <IconButton
                   color="inherit"
-                  onClick={() => handleClick(<CreateMenuContent />)}
+                  onClick={(event) => handleClick(event, <CreateMenuContent />)}
                 >
                   <AddCircleOutlineIcon />
                 </IconButton>
@@ -140,8 +137,8 @@ const Navbar = (props) => {
               <Tooltip title="Messages">
                 <IconButton
                   color="inherit"
-                  onClick={() =>
-                    handleClick(<MessageNotificationsMenuContent />)
+                  onClick={(event) =>
+                    handleClick(event, <MessageNotificationsMenuContent />)
                   }
                 >
                   <Badge badgeContent={9} color="secondary">
@@ -154,8 +151,8 @@ const Navbar = (props) => {
               <Tooltip title="Notifications">
                 <IconButton
                   color="inherit"
-                  onClick={() =>
-                    handleClick(<GeneralNotificationsMenuContent />)
+                  onClick={(event) =>
+                    handleClick(event, <GeneralNotificationsMenuContent />)
                   }
                 >
                   <Badge badgeContent={12} color="secondary">
@@ -168,7 +165,9 @@ const Navbar = (props) => {
               <Tooltip title="Sutwa Apps">
                 <IconButton
                   color="inherit"
-                  onClick={() => handleClick(<SutwAppsMenuContent />)}
+                  onClick={(event) =>
+                    handleClick(event, <SutwAppsMenuContent />)
+                  }
                 >
                   <AppsIcon />
                 </IconButton>
@@ -178,8 +177,11 @@ const Navbar = (props) => {
               <Tooltip title="Account">
                 <IconButton
                   color="inherit"
-                  onClick={() =>
-                    handleClick(<AccountMenuContent closeMenu={handleClose} />)
+                  onClick={(event) =>
+                    handleClick(
+                      event,
+                      <AccountMenuContent closeMenu={handleClose} />
+                    )
                   }
                   size="small"
                 >
@@ -192,12 +194,9 @@ const Navbar = (props) => {
       </AppBar>
 
       {/* Menu or dropdown menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        children={menuContent}
-      />
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+        {menuContent}
+      </Menu>
 
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
       <Hidden smUp implementation="css">
@@ -219,5 +218,4 @@ const Navbar = (props) => {
       </Hidden>
     </React.Fragment>
   );
-};
-export default Navbar;
+}
