@@ -2,6 +2,7 @@ import React from "react";
 import { Tab, Box, Tabs as Tablist } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 import { TabContext, TabPanel } from "@mui/lab";
+import { useRouter } from "next/router";
 import Jambotron from "../../Components/Jambotron";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +28,7 @@ export const Tabs = ({
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
+    event.preventDefault();
     setValue(newValue);
   };
   const theme = useTheme();
@@ -49,8 +51,9 @@ export const Tabs = ({
             indicatorColor={"primary"}
             aria-label="scrollable force tabs example"
           >
-            {tabContext.tabs.map((tab) => (
+            {tabContext.tabs.map((tab, index) => (
               <Tab
+                key={index}
                 label={tab.label}
                 value={tab.value}
                 className={classes.customTabStyle}
@@ -59,34 +62,29 @@ export const Tabs = ({
           </Tablist>
         </Box>
       </Jambotron>
-      {tabContext.tabPanels.map((tabpanel) => (
-        <TabPanel value={tabpanel.value} className={panelClassName}>
-          {tabpanel.component}
-        </TabPanel>
-      ))}
+      <Jambotron inlineBstStyle={`container-xl`}>
+        {tabContext.tabPanels.map((tabpanel, index) => (
+          <TabPanel
+            key={index}
+            value={tabpanel.value}
+            className={panelClassName}
+          >
+            {tabpanel.component}
+          </TabPanel>
+        ))}
+      </Jambotron>
     </TabContext>
   );
 };
 
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
 export const TabsWithLink = ({
   tabContext,
+  tabDefaultValue,
   inlineBstStyle,
   panelClassName,
   ...rest
 }) => {
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = React.useState(tabDefaultValue);
 
   const handleChange = (event, newValue) => {
     event.preventDefault();
@@ -94,6 +92,8 @@ export const TabsWithLink = ({
   };
 
   const classes = useStyles();
+
+  const router = useRouter();
 
   return (
     <TabContext value={value}>
@@ -115,56 +115,35 @@ export const TabsWithLink = ({
               indicatorColor={"primary"}
               aria-label="scrollable force tabs example"
             >
-              {tabContext.tabs.map((tab) => (
-                <LinkTab
+              {tabContext.tabs.map((tab, index) => (
+                <Tab
+                  key={index}
+                  component="a"
                   label={tab.label}
                   value={tab.value}
-                  href={tab.url}
+                  href={tab.path}
                   className={classes.customTabStyle}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    router.push(tab.path);
+                  }}
                 />
               ))}
             </Tablist>
           </Box>
         </Jambotron>
       </Jambotron>
-      {tabContext.tabPanels.map((tabPanel) => (
-        <Jambotron inlineBstStyle={`container-xl px-lg-4`}>
-          <TabPanel value={tabPanel.value} className={`mt-3 ${panelClassName}`}>
+      <Jambotron inlineBstStyle={`container-xl px-lg-4`}>
+        {tabContext.tabPanels.map((tabPanel, index) => (
+          <TabPanel
+            key={index}
+            value={tabPanel.value}
+            className={`mt-3 ${panelClassName}`}
+          >
             {tabPanel.component}
           </TabPanel>
-        </Jambotron>
-      ))}
+        ))}
+      </Jambotron>
     </TabContext>
   );
 };
-
-//   tabContext = {
-//     tabs: [
-//       {
-//         label: "About",
-//         value: "1",
-//       },
-//       {
-//         label: "Teams",
-//         value: "2",
-//       },
-//       {
-//         label: "Competitions",
-//         value: "3",
-//       },
-//     ],
-//     tabPanels: [
-//       {
-//         value: "1",
-//         component: <h4>This is about the User</h4>,
-//       },
-//       {
-//         value: "2",
-//         component: <h4>Teams the User is or was in</h4>,
-//       },
-//       {
-//         value: "3",
-//         component: <h4>Competitions the User is or was in</h4>,
-//       },
-//     ],
-//   },
