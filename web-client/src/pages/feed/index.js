@@ -1,7 +1,6 @@
 import React from "react";
-// import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +40,7 @@ const Feed = () => {
         >
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div className="col">
-              <div class="card shadow-sm">
+              <div className="card shadow-sm">
                 <svg
                   className="bd-placeholder-img card-img-top"
                   width="100%"
@@ -66,7 +65,7 @@ const Feed = () => {
                     longer.
                   </p>
                   <div className="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+                    <div className="btn-group">
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-secondary"
@@ -86,9 +85,9 @@ const Feed = () => {
               </div>
             </div>
             <div className="col">
-              <div class="card shadow-sm">
+              <div className="card shadow-sm">
                 <svg
-                  class="bd-placeholder-img card-img-top"
+                  className="bd-placeholder-img card-img-top"
                   width="100%"
                   height="225"
                   xmlns="http://www.w3.org/2000/svg"
@@ -104,36 +103,36 @@ const Feed = () => {
                   </text>
                 </svg>
 
-                <div class="card-body">
-                  <p class="card-text">
+                <div className="card-body">
+                  <p className="card-text">
                     This is a wider card with supporting text below as a natural
                     lead-in to additional content. This content is a little bit
                     longer.
                   </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-secondary"
                       >
                         View
                       </button>
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-secondary"
                       >
                         Edit
                       </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card shadow-sm">
+            <div className="col">
+              <div className="card shadow-sm">
                 <svg
-                  class="bd-placeholder-img card-img-top"
+                  className="bd-placeholder-img card-img-top"
                   width="100%"
                   height="225"
                   xmlns="http://www.w3.org/2000/svg"
@@ -149,28 +148,28 @@ const Feed = () => {
                   </text>
                 </svg>
 
-                <div class="card-body">
-                  <p class="card-text">
+                <div className="card-body">
+                  <p className="card-text">
                     This is a wider card with supporting text below as a natural
                     lead-in to additional content. This content is a little bit
                     longer.
                   </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-secondary"
                       >
                         View
                       </button>
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-secondary"
                       >
                         Edit
                       </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
