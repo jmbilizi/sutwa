@@ -125,7 +125,7 @@ export const TabsWithLink = ({
                   className={classes.customTabStyle}
                   onClick={(event) => {
                     event.preventDefault();
-                    router.push(tab.path);
+                    router.push(tab.path, undefined, { shallow: true });
                   }}
                 />
               ))}
