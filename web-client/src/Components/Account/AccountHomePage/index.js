@@ -198,18 +198,19 @@ export default function AccountHomePage() {
             className={classes.paper}
           >
             <div className="mx-4 my-5">
-              <IconButton
-                style={{
-                  fontSize: "50px",
-                  color: "white",
-                  fontWeight: "900",
-                }}
-                className={`${classes.sutwaLogo} py-1 px-4`}
-                href="/"
-              >
-                S
-              </IconButton>
-
+              <Link href="/">
+                <IconButton
+                  style={{
+                    fontSize: "50px",
+                    color: "white",
+                    fontWeight: "900",
+                  }}
+                  className={`${classes.sutwaLogo} py-1 px-4`}
+                  href="/"
+                >
+                  S
+                </IconButton>
+              </Link>
               <h1 className="display-2 my-4">Entertaining Now</h1>
               <h1 className="display-6 mb-3">
                 Join <span className={classes.logoLetter}>Sutwa</span> Today.

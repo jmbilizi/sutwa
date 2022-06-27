@@ -3,6 +3,7 @@ import { IconButton } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { makeStyles, useTheme } from "@mui/styles";
 import PropTypes from "prop-types";
+import Link from "next/link";
 import Tooltip from "../Tooltip";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,20 +32,21 @@ const MenuIconAndLogo = ({ handleDrawerToggle }) => {
           <MenuIcon />
         </IconButton>
       </Tooltip>
-      <IconButton
-        style={{
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          fontSize: "25px",
-          color: "white",
-          fontWeight: "800",
-        }}
-        size="small"
-        className={classes.logo}
-        href="/"
-      >
-        S
-      </IconButton>
+      <Link href="/">
+        <IconButton
+          style={{
+            paddingLeft: "10px",
+            paddingRight: "10px",
+            fontSize: "25px",
+            color: "white",
+            fontWeight: "800",
+          }}
+          size="small"
+          className={classes.logo}
+        >
+          S
+        </IconButton>
+      </Link>
     </div>
   );
 };
