@@ -3,10 +3,14 @@ import { Grid, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
-// Modal
-import Modal from "../../Modal";
-import AccountLoginPage from "../../Account/AccountLoginPage";
-import AccountSignupPage from "../../Account/AccountSignupPage";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../../Modal"));
+const AccountLoginPage = dynamic(() =>
+  import("../../Account/AccountLoginPage")
+);
+const AccountSignupPage = dynamic(() =>
+  import("../../Account/AccountSignupPage")
+);
 
 const useStyles = makeStyles((theme) => ({
   root: {

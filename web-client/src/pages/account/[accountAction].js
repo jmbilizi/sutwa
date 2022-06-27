@@ -1,8 +1,13 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import Modal from "../../Components/Modal";
-import AccountLoginPage from "../../Components/Account/AccountLoginPage";
-import AccountSignupPage from "../../Components/Account/AccountSignupPage";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../../Components/Modal"));
+const AccountLoginPage = dynamic(() =>
+  import("../../Components/Account/AccountLoginPage")
+);
+const AccountSignupPage = dynamic(() =>
+  import("../../Components/Account/AccountSignupPage")
+);
 
 const AccountAction = ({ accountAction }) => {
   const router = useRouter();

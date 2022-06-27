@@ -1,5 +1,8 @@
 import * as React from "react";
-import AccountHomePage from "../../Components/Account/AccountHomePage";
+import dynamic from "next/dynamic";
+const AccountHomePage = dynamic(() =>
+  import("../../Components/Account/AccountHomePage")
+);
 
 export default function Home() {
   return <AccountHomePage />;
