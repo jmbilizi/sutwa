@@ -2,7 +2,8 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { Provider as ReduxStoreProvider } from "react-redux";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
+import nProgress from "nprogress";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
@@ -12,9 +13,16 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import "bootstrap/dist/css/bootstrap.css";
 import "./../styles/globals.css";
+import "./../styles/nprogress.css";
 import { Store } from "./../_Store/index";
 import * as Layouts from "../Components/Layouts";
+
 // import buildClient from "../../api/build-client";
+
+// Set nProgross for route change progress bar
+Router.events.on("routeChangeStart", nProgress.start);
+Router.events.on("routeChangeError", nProgress.done);
+Router.events.on("routeChangeComplete", nProgress.done);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
