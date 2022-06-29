@@ -82,6 +82,7 @@ export const TabsWithLink = ({
   tabDefaultValue,
   inlineBstStyle,
   panelClassName,
+  more,
   ...rest
 }) => {
   const [value, setValue] = React.useState(tabDefaultValue);
@@ -129,6 +130,7 @@ export const TabsWithLink = ({
                   }}
                 />
               ))}
+              {more ? more : null}
             </Tablist>
           </Box>
         </Jambotron>

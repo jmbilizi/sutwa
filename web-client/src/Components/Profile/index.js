@@ -1,6 +1,9 @@
 import React from "react";
 import { IconButton } from "@mui/material";
-import { ThumbUp as LikeIcon } from "@mui/icons-material";
+import {
+  ThumbUp as LikeIcon,
+  MoreHoriz as MoreHorizIcon,
+} from "@mui/icons-material";
 import { makeStyles, useTheme } from "@mui/styles";
 import { TabsWithLink } from "../Tabs";
 import Jambotron from "../../Components/Jambotron";
@@ -88,6 +91,19 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
         scrollButtons="auto"
         tabContext={tabContext}
         tabDefaultValue={tabDefaultValue}
+        more={
+          <span
+            style={{
+              backgroundColor: "#dddddd",
+              marginLeft: "auto",
+              borderRadius: "5px",
+            }}
+            className="px-2 my-3"
+            onClick={() => alert("3 dots were clicked")}
+          >
+            <MoreHorizIcon sx={{ marginTop: 0 }} />
+          </span>
+        }
       />
     </React.Fragment>
   );
