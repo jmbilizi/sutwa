@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginBlock: "3px",
     "&:hover": {
-      backgroundColor: "#dddddd",
+      backgroundColor: "#d5d5d5",
       borderRadius: "5px",
     },
   },
@@ -36,10 +36,7 @@ export const Tabs = ({
 
   return (
     <TabContext value={value}>
-      <Jambotron
-        style={{ backgroundColor: "white" }}
-        inlineBstStyle={inlineBstStyle}
-      >
+      <Jambotron inlineBstStyle={inlineBstStyle}>
         <Box>
           <Tablist
             {...rest}

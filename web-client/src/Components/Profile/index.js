@@ -18,6 +18,14 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
         paddingBottom: "150px",
       },
     },
+    moreHorizontal: {
+      backgroundColor: "#d5d5d5",
+      marginLeft: "auto",
+      borderRadius: "5px",
+      "&:hover": {
+        backgroundColor: "#dddddd",
+      },
+    },
   }));
 
   const them = useTheme();
@@ -93,12 +101,7 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
         tabDefaultValue={tabDefaultValue}
         more={
           <span
-            style={{
-              backgroundColor: "#dddddd",
-              marginLeft: "auto",
-              borderRadius: "5px",
-            }}
-            className="px-2 my-3"
+            className={`${classes.moreHorizontal} px-2 my-3`}
             onClick={() => alert("3 dots were clicked")}
           >
             <MoreHorizIcon sx={{ marginTop: 0 }} />
