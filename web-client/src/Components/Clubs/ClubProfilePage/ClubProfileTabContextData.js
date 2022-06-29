@@ -4,31 +4,31 @@ export const ClubProfileTabs = [
     value: "1",
   },
   {
-    label: "Members",
+    label: "Posts",
     value: "2",
   },
   {
-    label: "Teams",
+    label: "Events",
     value: "3",
   },
   {
-    label: "Competitions",
+    label: "Photos",
     value: "4",
   },
   {
-    label: "Posts",
+    label: "Videos",
     value: "5",
   },
   {
-    label: "Photos",
+    label: "Members",
     value: "6",
   },
   {
-    label: "Videos",
+    label: "Teams",
     value: "7",
   },
   {
-    label: "More",
+    label: "Competitions",
     value: "8",
   },
 ];
@@ -36,34 +36,52 @@ export const ClubProfileTabs = [
 export const ClubProfileTabPanels = [
   {
     value: "1",
-    component: <h4>This is about the User</h4>,
+    component: <h4>General information about the Club</h4>,
   },
   {
     value: "2",
-    component: <h4>Club members</h4>,
+    component: (
+      <h4>
+        Posts posted by club / club admins or that the club / "team belonging to
+        the club" were tagged in
+      </h4>
+    ),
   },
   {
     value: "3",
-    component: <h4>Competitions the User is or was in</h4>,
+    component: (
+      <h4>
+        Events played, playing or going to be played by any of the team that
+        belong to this club
+      </h4>
+    ),
   },
   {
     value: "4",
-    component: <h4>Clubs the User is or was in</h4>,
+    component: (
+      <h4>Photos added by the club or club admins tagging the club</h4>
+    ),
   },
   {
     value: "5",
-    component: <h4>Users who are friends with the User</h4>,
+    component: (
+      <h4>Videos added by the club or club admins tagging the club</h4>
+    ),
   },
   {
     value: "6",
-    component: <h4>Photos shared by the User or targeted</h4>,
+    component: <h4>Members of the club / club's teams including admins</h4>,
   },
   {
     value: "7",
-    component: <h4>Videos shared by the User or targeted</h4>,
+    component: <h4>Teams belonging to the club</h4>,
   },
   {
     value: "8",
-    component: <h4>More things!</h4>,
+    component: (
+      <h4>
+        Competitions that teams of the club participated or are participating in
+      </h4>
+    ),
   },
 ];
