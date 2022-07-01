@@ -88,12 +88,10 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
                 </button>
               </div>
             </div>
-            <hr className="mt-lg-0 mb-0"></hr>
           </div>
         </Jambotron>
       </Jambotron>
       <TabsWithLink
-        inlineBstStyle="container-fluid shadow-sm bottom"
         panelClassName="px-0 pt-0 m-0"
         variant="scrollable"
         scrollButtons="auto"

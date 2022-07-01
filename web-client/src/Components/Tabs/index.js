@@ -77,7 +77,6 @@ export const Tabs = ({
 export const TabsWithLink = ({
   tabContext,
   tabDefaultValue,
-  inlineBstStyle,
   panelClassName,
   more,
   ...rest
@@ -97,17 +96,18 @@ export const TabsWithLink = ({
     <TabContext value={value}>
       <Jambotron
         style={{ backgroundColor: "white" }}
-        inlineBstStyle={inlineBstStyle}
+        inlineBstStyle="container-fluid  shadow-sm bottom px-1"
       >
         <Jambotron
           inlineBstStyle={`container-xl mt-0 position-relative px-lg-4`}
         >
+          <hr className="mt-lg-0 mb-0"></hr>
           <Box>
             <Tablist
               {...rest}
               value={value}
               onChange={handleChange}
-              visibleScrollbar
+              // visibleScrollbar
               // scrollButtons={false}
               // allowScrollButtonsMobile
               indicatorColor={"primary"}
@@ -132,12 +132,13 @@ export const TabsWithLink = ({
           </Box>
         </Jambotron>
       </Jambotron>
-      <Jambotron inlineBstStyle={`container-xl px-lg-4`}>
+      <Jambotron inlineBstStyle={`container-xl`}>
         {tabContext.tabPanels.map((tabPanel, index) => (
           <TabPanel
             key={index}
             value={tabPanel.value}
-            className={`mt-3 ${panelClassName}`}
+            className={`mt-3 ${panelClassName} mx-1 mx-lg-4 border border-silver`}
+            style={{ borderRadius: "5px" }}
           >
             {tabPanel.component}
           </TabPanel>
