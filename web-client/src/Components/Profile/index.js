@@ -70,9 +70,7 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
               </div>
               <div className="col d-xlg-flex text-lg-end">
                 <div className="p-1">
-                  <IconButton>
-                    <LikeIcon />
-                  </IconButton>
+                  <LikeIcon />
                 </div>
                 <button
                   className="btn btn-outline-secondary mx-2 px-4"
