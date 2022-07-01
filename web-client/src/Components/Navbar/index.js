@@ -197,7 +197,7 @@ export default function Navbar(props) {
       </AppBar>
 
       {/* Menu or dropdown menu */}
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu anchorEl={anchorEl} width="350px" open={open} onClose={handleClose}>
         {menuContent}
       </Menu>
 
