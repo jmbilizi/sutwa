@@ -1,36 +1,67 @@
 import React from "react";
-import { IconButton } from "@mui/material";
+import {
+  Divider,
+  MenuList,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import {
   ThumbUp as LikeIcon,
   MoreHoriz as MoreHorizIcon,
+  AddBoxOutlined as AddBoxOutlinedIcon,
 } from "@mui/icons-material";
 import { makeStyles, useTheme } from "@mui/styles";
+import Link from "next/link";
 import { TabsWithLink } from "../Tabs";
 import Jambotron from "../../Components/Jambotron";
+import { Menu } from "../Menu";
+import { SmallMenu } from "../Menu/smallMenu.js";
+
+const useStyles = makeStyles((theme) => ({
+  coverContainer: {
+    [theme.breakpoints.down("lg")]: {
+      paddingBottom: "360px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingBottom: "150px",
+    },
+  },
+  hover: {
+    "&:hover": {
+      backgroundColor: "#E8E8E8",
+      borderRadius: "5px",
+    },
+  },
+  moreHorizontal: {
+    backgroundColor: "#d5d5d5",
+    marginLeft: "auto",
+    borderRadius: "5px",
+    "&:hover": {
+      backgroundColor: "#dddddd",
+    },
+  },
+}));
 
 const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
-  const useStyles = makeStyles((theme) => ({
-    coverContainer: {
-      [theme.breakpoints.down("lg")]: {
-        paddingBottom: "360px",
-      },
-      [theme.breakpoints.up("lg")]: {
-        paddingBottom: "150px",
-      },
-    },
-    moreHorizontal: {
-      backgroundColor: "#d5d5d5",
-      marginLeft: "auto",
-      borderRadius: "5px",
-      "&:hover": {
-        backgroundColor: "#dddddd",
-      },
-    },
-  }));
+  //Menu related staff
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const [menuContent, setMenuContent] = React.useState(null);
+
+  const handleClick = (event, menuCont) => {
+    event.preventDefault();
+    setAnchorEl(event.currentTarget);
+    setMenuContent(menuCont);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const them = useTheme();
   const classes = useStyles(them);
-
   return (
     <React.Fragment>
       <Jambotron
@@ -98,11 +129,69 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
         more={
           <span
             className={`${classes.moreHorizontal} px-2 my-3`}
-            onClick={() => alert("3 dots were clicked")}
+            onClick={(event) =>
+              handleClick(
+                event,
+                <MenuList dense className="p-2">
+                  {[
+                    {
+                      name: "Post",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-post",
+                    },
+                    {
+                      name: "Team",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-team",
+                    },
+                    {
+                      name: "Club",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-club",
+                    },
+                    {
+                      name: "Competition",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-competition",
+                    },
+                    {
+                      name: "Tournament",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-tournament",
+                    },
+                    {
+                      name: "Facility",
+                      icon: <AddBoxOutlinedIcon />,
+                      href: "/new-facility",
+                    },
+                  ].map((object, Index) => (
+                    <Link
+                      key={Index}
+                      style={{ textDecoration: "inherit", color: "inherit" }}
+                      href={object.href}
+                    >
+                      <ListItem
+                        className={`${classes.hover}`}
+                        style={{ borderRadius: "5px" }}
+                      >
+                        <ListItemIcon>{object.icon}</ListItemIcon>
+                        <ListItemText primary={`Create a ${object.name}`} />
+                      </ListItem>
+                    </Link>
+                  ))}
+                </MenuList>
+              )
+            }
           >
             <MoreHorizIcon sx={{ marginTop: 0 }} />
           </span>
         }
+      />
+      <SmallMenu
+        anchorEl={anchorEl}
+        open={open}
+        menuContent={menuContent}
+        onClose={handleClose}
       />
     </React.Fragment>
   );

@@ -2,11 +2,26 @@ import React from "react";
 import { Tab, Box, Tabs as Tablist } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 import { TabContext, TabPanel } from "@mui/lab";
+import {
+  ArrowDropDown as ArrowDropDownIcon,
+  ArrowDropUp as ArrowDropUpIcon,
+} from "@mui/icons-material";
 import { useRouter } from "next/router";
 import Jambotron from "../../Components/Jambotron";
 
 const useStyles = makeStyles((theme) => ({
   customTabStyle: {
+    textTransform: "none",
+    "&.Mui-selected": {
+      fontWeight: "900",
+    },
+    marginBlock: "3px",
+    "&:hover": {
+      backgroundColor: "#d5d5d5",
+      borderRadius: "5px",
+    },
+  },
+  MoreTabStyle: {
     textTransform: "none",
     "&.Mui-selected": {
       fontWeight: "900",
@@ -127,6 +142,15 @@ export const TabsWithLink = ({
                   }}
                 />
               ))}
+              <Tab
+                label={
+                  <span>
+                    More
+                    <ArrowDropDownIcon />
+                  </span>
+                }
+                className={classes.MoreTabStyle}
+              />
               {more ? more : null}
             </Tablist>
           </Box>

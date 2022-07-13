@@ -31,7 +31,7 @@ import {
   CreateMenuContent,
 } from "./menuContents";
 import MenuIconAndLogo from "./menuIconAndLogo";
-import Menu from "../Menu";
+import { Menu } from "../Menu";
 
 import { SearchForm } from "./searchForm";
 
@@ -197,7 +197,19 @@ export default function Navbar(props) {
       </AppBar>
 
       {/* Menu or dropdown menu */}
-      <Menu anchorEl={anchorEl} width="350px" open={open} onClose={handleClose}>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          style: {
+            marginTop: 50,
+            maxHeight: "80vh",
+            cursor: "pointer",
+            width: "350px",
+          },
+        }}
+      >
         {menuContent}
       </Menu>
 

@@ -16,11 +16,7 @@ function backNavItems() {
 }
 
 export const searchBar = (
-  <div
-    style={{ marginTop: "11.6px", marginBottom: "11.6px", paddingBlock: "2px" }}
-    className="col"
-    id="search-content"
-  >
+  <div className="col" id="search-content">
     <div
       style={{
         paddingLeft: "15px",
