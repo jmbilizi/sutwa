@@ -8,7 +8,6 @@ body {
   text-decoration: none;
   list-style-type: none;
   display: inline-block;
-  margin-block: 7px;
 }
 
 .left-side-nav-content {
@@ -43,6 +42,7 @@ body {
 @media (max-width: 991.98px) {
   #search-content {
     display: none;
+    margin-block: 6px;
   }
   .microphone {
     visibility: hidden !important;
