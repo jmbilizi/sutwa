@@ -1,19 +1,34 @@
 import * as React from "react";
-import { Menu as MaterialUIMenu } from "@mui/material";
+import { Popper, Box } from "@mui/material";
+import { ClickAwayListener } from "@mui/base";
 import PropTypes from "prop-types";
 
-export const Menu = ({ children, ...rest }) => {
+export const Menu = ({
+  children,
+  isOpen,
+  clickAwayHandler,
+  boxStyle,
+  ...rest
+}) => {
   return (
-    <MaterialUIMenu
-      {...rest}
-      anchorOrigin={{ horizontal: "right", vertical: "top" }}
-    >
-      {children}
-    </MaterialUIMenu>
+    <ClickAwayListener onClickAway={clickAwayHandler}>
+      <Popper {...rest} open={isOpen}>
+        <Box
+          sx={{
+            boxShadow: 2,
+            cursor: "pointer",
+            bgcolor: "background.paper",
+            borderRadius: "5px",
+            ...boxStyle,
+          }}
+        >
+          {children}
+        </Box>
+      </Popper>
+    </ClickAwayListener>
   );
 };
 
 Menu.propTypes = {
   children: PropTypes.node,
-  width: PropTypes.string,
 };

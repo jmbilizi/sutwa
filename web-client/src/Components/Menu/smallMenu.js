@@ -1,39 +1,48 @@
 import React from "react";
 import { Menu } from "./index";
 
-export const SmallMenu = ({ anchorEl, open, onClose, menuContent }) => {
+export const SmallMenu = ({
+  anchorEl,
+  isOpen,
+  clickAwayHandler,
+  menuContent,
+  boxStyle,
+}) => {
   return (
     <Menu
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorEl={anchorEl}
-      open={open}
-      onClose={onClose}
-      PaperProps={{
-        elevation: 0,
-        sx: {
-          overflow: "visible",
-          filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-          my: 6,
-          "& .MuiAvatar-root": {
-            width: 32,
-            height: 32,
-            ml: -0.5,
-            mr: 1,
-          },
-          "&:before": {
-            content: '""',
-            display: "block",
-            position: "absolute",
-            top: 0,
-            right: 14,
-            width: 10,
-            height: 10,
-            bgcolor: "background.paper",
-            transform: "translateY(-50%) rotate(45deg)",
-            zIndex: 0,
+      isOpen={isOpen}
+      clickAwayHandler={clickAwayHandler}
+      placement="bottom-end"
+      disablePortal={false}
+      boxStyle={{ ...boxStyle }}
+      modifiers={[
+        {
+          name: "flip",
+          enabled: true,
+          options: {
+            altBoundary: true,
+            rootBoundary: "document",
+            padding: 8,
           },
         },
-      }}
+        {
+          name: "preventOverflow",
+          enabled: true,
+          options: {
+            altAxis: true,
+            altBoundary: false,
+            tether: true,
+            rootBoundary: "document",
+            padding: 8,
+          },
+        },
+        {
+          name: "arrow",
+          enabled: true,
+        },
+      ]}
     >
       {menuContent}
     </Menu>

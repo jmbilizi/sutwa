@@ -92,7 +92,7 @@ export default function Navbar(props) {
 
   const handleClick = (event, menuCont) => {
     event.preventDefault();
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
     setMenuContent(menuCont);
   };
 
@@ -197,21 +197,21 @@ export default function Navbar(props) {
       </AppBar>
 
       {/* Menu or dropdown menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            marginTop: 50,
+
+      {open && (
+        <Menu
+          anchorEl={anchorEl}
+          boxStyle={{
             maxHeight: "80vh",
-            cursor: "pointer",
             width: "350px",
-          },
-        }}
-      >
-        {menuContent}
-      </Menu>
+            m: 2,
+          }}
+          clickAwayHandler={handleClose}
+          isOpen={open}
+        >
+          {menuContent}
+        </Menu>
+      )}
 
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
       <Hidden smUp implementation="css">

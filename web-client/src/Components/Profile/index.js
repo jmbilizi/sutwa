@@ -16,7 +16,6 @@ import { makeStyles, useTheme } from "@mui/styles";
 import Link from "next/link";
 import { TabsWithLink } from "../Tabs";
 import Jambotron from "../../Components/Jambotron";
-import { Menu } from "../Menu";
 import { SmallMenu } from "../Menu/smallMenu.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +51,7 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
 
   const handleClick = (event, menuCont) => {
     event.preventDefault();
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
     setMenuContent(menuCont);
   };
 
@@ -187,12 +186,15 @@ const Profile = ({ profileInfo, tabContext, tabDefaultValue }) => {
           </span>
         }
       />
-      <SmallMenu
-        anchorEl={anchorEl}
-        open={open}
-        menuContent={menuContent}
-        onClose={handleClose}
-      />
+      {open && (
+        <SmallMenu
+          anchorEl={anchorEl}
+          menuContent={menuContent}
+          clickAwayHandler={handleClose}
+          isOpen={open}
+          boxStyle={{ my: 2.6 }}
+        />
+      )}
     </React.Fragment>
   );
 };
