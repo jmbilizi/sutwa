@@ -45,6 +45,13 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "5px",
     },
   },
+  MoreTabsListStyle: {
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#d5d5d5",
+      borderRadius: "5px",
+    },
+  },
   hover: {
     "&:hover": {
       backgroundColor: "#E8E8E8",
@@ -163,77 +170,137 @@ export const TabsWithLink = ({
                 indicatorColor={"primary"}
                 aria-label="scrollable force tabs example"
               >
-                {tabContext.tabs.map((tab, index) => (
-                  <Tab
-                    key={index}
-                    component="a"
-                    label={tab.label}
-                    value={tab.value}
-                    href={tab.path}
-                    className={classes.customTabStyle}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      router.push(tab.path, undefined, { shallow: true });
-                    }}
-                  />
-                ))}
+                {tabContext.tabs
+                  .filter((o, i) => i <= 2)
+                  .map((tab, index) => (
+                    <Tab
+                      sx={{ display: { xs: "block", md: "none" }, padding: 2 }}
+                      key={index}
+                      component="a"
+                      label={tab.label}
+                      value={tab.value}
+                      href={tab.path}
+                      className={classes.customTabStyle}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        router.push(tab.path, undefined, { shallow: true });
+                      }}
+                    />
+                  ))}
+
+                {tabContext.tabs
+                  .filter((o, i) => i <= 4)
+                  .map((tab, index) => (
+                    <Tab
+                      sx={{
+                        display: { xs: "none", md: "block", lg: "none" },
+                        padding: 2,
+                      }}
+                      key={index}
+                      component="a"
+                      label={tab.label}
+                      value={tab.value}
+                      href={tab.path}
+                      className={classes.customTabStyle}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        router.push(tab.path, undefined, { shallow: true });
+                      }}
+                    />
+                  ))}
+
+                {tabContext.tabs
+                  .filter((o, i) => i <= 5)
+                  .map((tab, index) => (
+                    <Tab
+                      sx={{ display: { xs: "none", lg: "block" }, padding: 2 }}
+                      key={index}
+                      component="a"
+                      label={tab.label}
+                      value={tab.value}
+                      href={tab.path}
+                      className={classes.customTabStyle}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        router.push(tab.path, undefined, { shallow: true });
+                      }}
+                    />
+                  ))}
                 <Tab
                   onClick={(event) => {
                     event.preventDefault();
                     return handleClick(
                       event,
                       <MenuList dense className="p-2">
-                        {[
-                          {
-                            name: "Post",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-post",
-                          },
-                          {
-                            name: "Team",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-team",
-                          },
-                          {
-                            name: "Club",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-club",
-                          },
-                          {
-                            name: "Competition",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-competition",
-                          },
-                          {
-                            name: "Tournament",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-tournament",
-                          },
-                          {
-                            name: "Facility",
-                            icon: <AddBoxOutlinedIcon />,
-                            href: "/new-facility",
-                          },
-                        ].map((object, Index) => (
-                          <Link
-                            key={Index}
-                            style={{
-                              textDecoration: "inherit",
-                              color: "inherit",
-                            }}
-                            href={object.href}
-                          >
-                            <ListItem
-                              className={`${classes.hover}`}
-                              style={{ borderRadius: "5px" }}
-                            >
-                              <ListItemIcon>{object.icon}</ListItemIcon>
-                              <ListItemText
-                                primary={`Create a ${object.name}`}
-                              />
-                            </ListItem>
-                          </Link>
-                        ))}
+                        {tabContext.tabs
+                          .filter((o, i) => i > 2)
+                          .map((tab, index) => (
+                            <Tab
+                              sx={{
+                                display: { xs: "block", md: "none" },
+                              }}
+                              key={index}
+                              component="a"
+                              label={tab.label}
+                              value={tab.value}
+                              href={tab.path}
+                              className={classes.MoreTabsListStyle}
+                              onClick={(ev) => {
+                                ev.preventDefault();
+                                router.push(tab.path, undefined, {
+                                  shallow: true,
+                                });
+                              }}
+                            />
+                          ))}
+
+                        {tabContext.tabs
+                          .filter((o, i) => i > 4)
+                          .map((tab, index) => (
+                            <Tab
+                              sx={{
+                                display: {
+                                  xs: "none",
+                                  md: "block",
+                                  lg: "none",
+                                },
+                              }}
+                              key={index}
+                              component="a"
+                              label={tab.label}
+                              value={tab.value}
+                              href={tab.path}
+                              className={classes.MoreTabsListStyle}
+                              onClick={(ev) => {
+                                ev.preventDefault();
+                                router.push(tab.path, undefined, {
+                                  shallow: true,
+                                });
+                              }}
+                            />
+                          ))}
+
+                        {tabContext.tabs
+                          .filter((o, i) => i > 5)
+                          .map((tab, index) => (
+                            <Tab
+                              sx={{
+                                display: { xs: "none", lg: "block" },
+                              }}
+                              key={index}
+                              component="a"
+                              label={tab.label}
+                              value={tab.value}
+                              href={tab.path}
+                              className={classes.MoreTabsListStyle}
+                              onClick={(ev) => {
+                                ev.preventDefault();
+                                router.push(tab.path, undefined, {
+                                  shallow: true,
+                                });
+                              }}
+                            />
+                          ))}
                       </MenuList>
                     );
                   }}
