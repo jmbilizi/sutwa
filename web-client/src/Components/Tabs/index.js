@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#d5d5d5",
       borderRadius: "5px",
     },
+    textDecoration: "inherit",
+    color: "inherit",
   },
   hover: {
     "&:hover": {
@@ -231,33 +233,36 @@ export const TabsWithLink = ({
                     event.preventDefault();
                     return handleClick(
                       event,
-                      <MenuList dense className="p-2">
+                      <MenuList dense className="py-2 px-1">
                         {tabContext.tabs
                           .filter((o, i) => i > 2)
                           .map((tab, index) => (
-                            <Tab
+                            <ListItem
                               sx={{
                                 display: { xs: "block", md: "none" },
                               }}
                               key={index}
                               component="a"
-                              label={tab.label}
                               value={tab.value}
                               href={tab.path}
                               className={classes.MoreTabsListStyle}
                               onClick={(ev) => {
                                 ev.preventDefault();
+                                setValue(tab.value);
                                 router.push(tab.path, undefined, {
                                   shallow: true,
                                 });
+                                handleClose();
                               }}
-                            />
+                            >
+                              <small>{tab.label}</small>
+                            </ListItem>
                           ))}
 
                         {tabContext.tabs
                           .filter((o, i) => i > 4)
                           .map((tab, index) => (
-                            <Tab
+                            <ListItem
                               sx={{
                                 display: {
                                   xs: "none",
@@ -267,49 +272,57 @@ export const TabsWithLink = ({
                               }}
                               key={index}
                               component="a"
-                              label={tab.label}
                               value={tab.value}
                               href={tab.path}
                               className={classes.MoreTabsListStyle}
                               onClick={(ev) => {
                                 ev.preventDefault();
+                                setValue(tab.value);
                                 router.push(tab.path, undefined, {
                                   shallow: true,
                                 });
+                                handleClose();
                               }}
-                            />
+                            >
+                              <small>{tab.label}</small>
+                            </ListItem>
                           ))}
 
                         {tabContext.tabs
                           .filter((o, i) => i > 5)
                           .map((tab, index) => (
-                            <Tab
+                            <ListItem
                               sx={{
                                 display: { xs: "none", lg: "block" },
                               }}
                               key={index}
                               component="a"
-                              label={tab.label}
                               value={tab.value}
                               href={tab.path}
                               className={classes.MoreTabsListStyle}
                               onClick={(ev) => {
                                 ev.preventDefault();
+                                setValue(tab.value);
                                 router.push(tab.path, undefined, {
                                   shallow: true,
                                 });
+                                handleClose();
                               }}
-                            />
+                            >
+                              <small>{tab.label}</small>
+                            </ListItem>
                           ))}
                       </MenuList>
                     );
                   }}
+                  value={false}
                   label={
                     <span>
                       More
                       <ArrowDropDownIcon />
                     </span>
                   }
+                  component="a"
                   className={classes.MoreTabStyle}
                 />
                 {more ? more : null}

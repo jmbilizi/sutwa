@@ -7,16 +7,17 @@ export const SmallMenu = ({
   clickAwayHandler,
   menuContent,
   boxStyle,
+  ...rest
 }) => {
   return (
     <Menu
+      {...rest}
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorEl={anchorEl}
       isOpen={isOpen}
       clickAwayHandler={clickAwayHandler}
-      placement="bottom-end"
       disablePortal={false}
-      boxStyle={{ ...boxStyle }}
+      boxStyle={{ width: "250px", ...boxStyle }}
       modifiers={[
         {
           name: "flip",
