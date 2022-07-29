@@ -14,8 +14,7 @@ import { makeStyles, useTheme } from "@mui/styles";
 import { TabContext, TabPanel } from "@mui/lab";
 import {
   ArrowDropDown as ArrowDropDownIcon,
-  ArrowDropUp as ArrowDropUpIcon,
-  AddBoxOutlined as AddBoxOutlinedIcon,
+  Check as CheckIcon,
 } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginBlock: "3px",
     "&:hover": {
-      backgroundColor: "#d5d5d5",
+      backgroundColor: "#f1f1f1",
       borderRadius: "5px",
     },
   },
@@ -41,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
     },
     marginBlock: "3px",
     "&:hover": {
-      backgroundColor: "#d5d5d5",
+      backgroundColor: "#f1f1f1",
       borderRadius: "5px",
     },
   },
   MoreTabsListStyle: {
     textTransform: "none",
     "&:hover": {
-      backgroundColor: "#d5d5d5",
+      backgroundColor: "#f1f1f1",
       borderRadius: "5px",
     },
     textDecoration: "inherit",
@@ -56,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   hover: {
     "&:hover": {
-      backgroundColor: "#E8E8E8",
+      backgroundColor: "#f1f1f1",
       borderRadius: "5px",
     },
   },
@@ -155,7 +154,7 @@ export const TabsWithLink = ({
       <TabContext value={value}>
         <Jambotron
           style={{ backgroundColor: "white" }}
-          inlineBstStyle="container-fluid  shadow-sm bottom px-1"
+          inlineBstStyle="container-fluid shadow-sm bottom px-1"
         >
           <Jambotron
             inlineBstStyle={`container-xl mt-0 position-relative px-lg-4`}
@@ -256,6 +255,13 @@ export const TabsWithLink = ({
                               }}
                             >
                               <small>{tab.label}</small>
+                              {tab.value === value ? (
+                                <CheckIcon
+                                  color="primary"
+                                  fontSize="small"
+                                  className="float-end"
+                                />
+                              ) : null}
                             </ListItem>
                           ))}
 
@@ -285,6 +291,13 @@ export const TabsWithLink = ({
                               }}
                             >
                               <small>{tab.label}</small>
+                              {tab.value === value ? (
+                                <CheckIcon
+                                  color="primary"
+                                  fontSize="small"
+                                  className="float-end"
+                                />
+                              ) : null}
                             </ListItem>
                           ))}
 
@@ -310,6 +323,13 @@ export const TabsWithLink = ({
                               }}
                             >
                               <small>{tab.label}</small>
+                              {tab.value === value ? (
+                                <CheckIcon
+                                  color="primary"
+                                  fontSize="small"
+                                  className="float-end"
+                                />
+                              ) : null}
                             </ListItem>
                           ))}
                       </MenuList>
@@ -335,7 +355,7 @@ export const TabsWithLink = ({
             <TabPanel
               key={index}
               value={tabPanel.value}
-              className={`mt-3 ${panelClassName} mx-1 mx-lg-4 border border-silver`}
+              className={`my-3 ${panelClassName} mx-1 mx-lg-4`}
               style={{ borderRadius: "5px" }}
             >
               {tabPanel.component}
