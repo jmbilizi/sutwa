@@ -41,12 +41,12 @@ export const AccountMenuContent = ({ closeMenu }) => {
       textDecoration: "none",
       fontSize: "20px",
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
       },
     },
     sutwaApps: {
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
       },
     },
     footerLinks: {
@@ -134,7 +134,7 @@ export const GeneralNotificationsMenuContent = () => {
   const useStyles = makeStyles((theme) => ({
     hover: {
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
         borderRadius: "5px",
       },
     },
@@ -162,7 +162,7 @@ export const MessageNotificationsMenuContent = () => {
   const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
         borderRadius: "5px",
       },
     },
@@ -189,7 +189,7 @@ export const SutwAppsMenuContent = ({ closeMenu }) => {
   const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
         borderRadius: "5px",
       },
     },
@@ -281,7 +281,7 @@ export const CreateMenuContent = () => {
   const useStyles = makeStyles((them) => ({
     hover: {
       "&:hover": {
-        backgroundColor: "#E8E8E8",
+        backgroundColor: "#f1f1f1",
         borderRadius: "5px",
       },
     },
