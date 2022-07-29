@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
     },
+    [theme.breakpoints.down("lg")]: {
+      paddingLeft: 0,
+      paddingRight: 0,
+      minWidth: 65,
+    },
   },
   MoreTabStyle: {
     textTransform: "none",
@@ -165,10 +170,7 @@ export const TabsWithLink = ({
                 {...rest}
                 value={value}
                 onChange={handleChange}
-                // visibleScrollbar
-                // scrollButtons={false}
-                // allowScrollButtonsMobile
-                indicatorColor={"primary"}
+                TabIndicatorProps={{ style: { height: 3 } }}
                 aria-label="scrollable force tabs example"
               >
                 {tabContext.tabs
