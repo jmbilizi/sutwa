@@ -24,18 +24,22 @@ import { SmallMenu } from "../Menu/smallMenu.js";
 const useStyles = makeStyles((theme) => ({
   customTabStyle: {
     textTransform: "none",
-    "&.Mui-selected": {
-      fontWeight: "900",
-    },
     marginBlock: "3px",
     "&:hover": {
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
+      textDecoration: "none",
+      color: "unset !important",
+      fontWeight: "normal",
+      "&.Mui-selected": {
+        backgroundColor: "transparent",
+      },
     },
+    maxWidth: 70,
     [theme.breakpoints.down("lg")]: {
       paddingLeft: 0,
       paddingRight: 0,
-      minWidth: 65,
+      minWidth: 63,
     },
   },
   MoreTabStyle: {
@@ -47,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
+      textDecoration: "none",
+      color: "unset !important",
+      fontWeight: "normal",
+      "&.Mui-selected": {
+        backgroundColor: "transparent",
+      },
     },
   },
   MoreTabsListStyle: {
@@ -54,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
+      color: "inherit",
     },
     textDecoration: "inherit",
     color: "inherit",
@@ -129,6 +140,30 @@ export const TabsWithLink = ({
   ...rest
 }) => {
   const [value, setValue] = React.useState(tabDefaultValue);
+  const [screenWidthSize, setScreenWidthSize] = React.useState(undefined);
+  const [visibleTabsData, setVisibleTabsData] = React.useState([]);
+  const [dropdownTabsData, setDropdownTabsData] = React.useState([]);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setScreenWidthSize(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    //handle Tabs data
+    const sm = 576;
+    const md = 768;
+
+    if (screenWidthSize <= sm) {
+      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 2));
+      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 2));
+    } else if (screenWidthSize <= md) {
+      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 4));
+      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 4));
+    } else {
+      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 5));
+      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 5));
+    }
+  }, [screenWidthSize, tabContext.tabs]);
 
   //Menu related staff
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -171,169 +206,56 @@ export const TabsWithLink = ({
                 value={value}
                 onChange={handleChange}
                 TabIndicatorProps={{ style: { height: 3 } }}
+                textColor="primary"
+                indicatorColor="primary"
                 aria-label="scrollable force tabs example"
               >
-                {tabContext.tabs
-                  .filter((o, i) => i <= 2)
-                  .map((tab, index) => (
-                    <Tab
-                      sx={{ display: { xs: "block", md: "none" }, padding: 2 }}
-                      key={index}
-                      component="a"
-                      label={tab.label}
-                      value={tab.value}
-                      href={tab.path}
-                      className={classes.customTabStyle}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        router.push(tab.path, undefined, { shallow: true });
-                      }}
-                    />
-                  ))}
-
-                {tabContext.tabs
-                  .filter((o, i) => i <= 4)
-                  .map((tab, index) => (
-                    <Tab
-                      sx={{
-                        display: { xs: "none", md: "block", lg: "none" },
-                        padding: 2,
-                      }}
-                      key={index}
-                      component="a"
-                      label={tab.label}
-                      value={tab.value}
-                      href={tab.path}
-                      className={classes.customTabStyle}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        router.push(tab.path, undefined, { shallow: true });
-                      }}
-                    />
-                  ))}
-
-                {tabContext.tabs
-                  .filter((o, i) => i <= 5)
-                  .map((tab, index) => (
-                    <Tab
-                      sx={{ display: { xs: "none", lg: "block" }, padding: 2 }}
-                      key={index}
-                      component="a"
-                      label={tab.label}
-                      value={tab.value}
-                      href={tab.path}
-                      className={classes.customTabStyle}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        router.push(tab.path, undefined, { shallow: true });
-                      }}
-                    />
-                  ))}
+                {visibleTabsData.map((tab, index) => (
+                  <Tab
+                    key={index}
+                    component="a"
+                    label={tab.label}
+                    value={tab.value}
+                    href={tab.path}
+                    className={classes.customTabStyle}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      router.push(tab.path, undefined, { shallow: true });
+                    }}
+                  />
+                ))}
                 <Tab
                   onClick={(event) => {
                     event.preventDefault();
                     return handleClick(
                       event,
                       <MenuList dense className="py-2 px-1">
-                        {tabContext.tabs
-                          .filter((o, i) => i > 2)
-                          .map((tab, index) => (
-                            <ListItem
-                              sx={{
-                                display: { xs: "block", md: "none" },
-                              }}
-                              key={index}
-                              component="a"
-                              value={tab.value}
-                              href={tab.path}
-                              className={classes.MoreTabsListStyle}
-                              onClick={(ev) => {
-                                ev.preventDefault();
-                                setValue(tab.value);
-                                router.push(tab.path, undefined, {
-                                  shallow: true,
-                                });
-                                handleClose();
-                              }}
-                            >
-                              <small>{tab.label}</small>
-                              {tab.value === value ? (
-                                <CheckIcon
-                                  color="primary"
-                                  fontSize="small"
-                                  className="float-end"
-                                />
-                              ) : null}
-                            </ListItem>
-                          ))}
-
-                        {tabContext.tabs
-                          .filter((o, i) => i > 4)
-                          .map((tab, index) => (
-                            <ListItem
-                              sx={{
-                                display: {
-                                  xs: "none",
-                                  md: "block",
-                                  lg: "none",
-                                },
-                              }}
-                              key={index}
-                              component="a"
-                              value={tab.value}
-                              href={tab.path}
-                              className={classes.MoreTabsListStyle}
-                              onClick={(ev) => {
-                                ev.preventDefault();
-                                setValue(tab.value);
-                                router.push(tab.path, undefined, {
-                                  shallow: true,
-                                });
-                                handleClose();
-                              }}
-                            >
-                              <small>{tab.label}</small>
-                              {tab.value === value ? (
-                                <CheckIcon
-                                  color="primary"
-                                  fontSize="small"
-                                  className="float-end"
-                                />
-                              ) : null}
-                            </ListItem>
-                          ))}
-
-                        {tabContext.tabs
-                          .filter((o, i) => i > 5)
-                          .map((tab, index) => (
-                            <ListItem
-                              sx={{
-                                display: { xs: "none", lg: "block" },
-                              }}
-                              key={index}
-                              component="a"
-                              value={tab.value}
-                              href={tab.path}
-                              className={classes.MoreTabsListStyle}
-                              onClick={(ev) => {
-                                ev.preventDefault();
-                                setValue(tab.value);
-                                router.push(tab.path, undefined, {
-                                  shallow: true,
-                                });
-                                handleClose();
-                              }}
-                            >
-                              <small>{tab.label}</small>
-                              {tab.value === value ? (
-                                <CheckIcon
-                                  color="primary"
-                                  fontSize="small"
-                                  className="float-end"
-                                />
-                              ) : null}
-                            </ListItem>
-                          ))}
+                        {dropdownTabsData.map((tab, index) => (
+                          <ListItem
+                            key={index}
+                            component="a"
+                            value={tab.value}
+                            href={tab.path}
+                            className={classes.MoreTabsListStyle}
+                            onClick={(ev) => {
+                              ev.preventDefault();
+                              setValue(tab.value);
+                              router.push(tab.path, undefined, {
+                                shallow: true,
+                              });
+                              handleClose();
+                            }}
+                          >
+                            <small>{tab.label}</small>
+                            {tab.value === value ? (
+                              <CheckIcon
+                                color="primary"
+                                fontSize="small"
+                                className="float-end"
+                              />
+                            ) : null}
+                          </ListItem>
+                        ))}
                       </MenuList>
                     );
                   }}
