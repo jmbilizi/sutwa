@@ -5,10 +5,9 @@ import {
   Tabs as Tablist,
   Divider,
   MenuList,
-  List,
   ListItem,
-  ListItemIcon,
   ListItemText,
+  Typography,
 } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 import { TabContext, TabPanel } from "@mui/lab";
@@ -43,27 +42,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   MoreTabStyle: {
-    textTransform: "none",
-    "&.Mui-selected": {
-      fontWeight: "900",
-    },
+    paddingBlock: "12px",
     marginBlock: "3px",
     "&:hover": {
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
-      textDecoration: "none",
-      color: "unset !important",
-      fontWeight: "normal",
-      "&.Mui-selected": {
-        backgroundColor: "transparent",
-      },
     },
   },
+  MoreTabStyleTabInDropDown: {
+    borderBottom: "3px solid #556cd6",
+    paddingTop: "15px",
+    color: "#556cd6",
+  },
+
   MoreTabsListStyle: {
-    textTransform: "none",
     "&:hover": {
       backgroundColor: "#f1f1f1",
-      borderRadius: "5px",
       color: "inherit",
     },
     textDecoration: "inherit",
@@ -143,12 +137,14 @@ export const TabsWithLink = ({
   const [screenWidthSize, setScreenWidthSize] = React.useState(undefined);
   const [visibleTabsData, setVisibleTabsData] = React.useState([]);
   const [dropdownTabsData, setDropdownTabsData] = React.useState([]);
+  const [isDropDownTab, setIsDropDownTab] = React.useState(false);
 
   React.useEffect(() => {
     const handleResize = () => {
       setScreenWidthSize(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
+
     //handle Tabs data
     const sm = 576;
     const md = 768;
@@ -156,24 +152,47 @@ export const TabsWithLink = ({
     if (screenWidthSize <= sm) {
       setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 2));
       setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 2));
+      setIsDropDownTab(
+        Boolean(
+          tabContext.tabs
+            .filter((o, i) => i > 2)
+            .find((tab) => tab.value === value)
+        )
+      );
     } else if (screenWidthSize <= md) {
       setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 4));
       setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 4));
+      setIsDropDownTab(
+        Boolean(
+          tabContext.tabs
+            .filter((o, i) => i > 4)
+            .find((tab) => tab.value === value)
+        )
+      );
     } else {
       setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 5));
       setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 5));
+      setIsDropDownTab(
+        Boolean(
+          tabContext.tabs
+            .filter((o, i) => i > 5)
+            .find((tab) => tab.value === value)
+        )
+      );
     }
-  }, [screenWidthSize, tabContext.tabs]);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [screenWidthSize, tabContext.tabs, value]);
 
   //Menu related staff
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [menuContent, setMenuContent] = React.useState(null);
 
-  const handleClick = (event, menuCont) => {
+  const handleClick = (event) => {
     event.preventDefault();
     setAnchorEl(anchorEl ? null : event.currentTarget);
-    setMenuContent(menuCont);
   };
 
   const handleClose = () => {
@@ -199,7 +218,7 @@ export const TabsWithLink = ({
           <Jambotron
             inlineBstStyle={`container-xl mt-0 position-relative px-lg-4`}
           >
-            <hr className="mt-lg-0 mb-0"></hr>
+            <Divider />
             <Box>
               <Tablist
                 {...rest}
@@ -224,51 +243,22 @@ export const TabsWithLink = ({
                     }}
                   />
                 ))}
-                <Tab
+                <span
                   onClick={(event) => {
                     event.preventDefault();
-                    return handleClick(
-                      event,
-                      <MenuList dense className="py-2 px-1">
-                        {dropdownTabsData.map((tab, index) => (
-                          <ListItem
-                            key={index}
-                            component="a"
-                            value={tab.value}
-                            href={tab.path}
-                            className={classes.MoreTabsListStyle}
-                            onClick={(ev) => {
-                              ev.preventDefault();
-                              setValue(tab.value);
-                              router.push(tab.path, undefined, {
-                                shallow: true,
-                              });
-                              handleClose();
-                            }}
-                          >
-                            <small>{tab.label}</small>
-                            {tab.value === value ? (
-                              <CheckIcon
-                                color="primary"
-                                fontSize="small"
-                                className="float-end"
-                              />
-                            ) : null}
-                          </ListItem>
-                        ))}
-                      </MenuList>
-                    );
+                    return handleClick(event);
                   }}
-                  value={false}
-                  label={
-                    <span>
-                      More
-                      <ArrowDropDownIcon />
-                    </span>
+                  className={
+                    isDropDownTab
+                      ? `${classes.MoreTabStyleTabInDropDown} ps-3 pe-2`
+                      : `${classes.MoreTabStyle} ps-3 pe-2`
                   }
-                  component="a"
-                  className={classes.MoreTabStyle}
-                />
+                >
+                  <small>
+                    More
+                    <ArrowDropDownIcon sx={{ marginTop: 0 }} />
+                  </small>
+                </span>
                 {more ? more : null}
               </Tablist>
             </Box>
@@ -290,7 +280,34 @@ export const TabsWithLink = ({
       {open && (
         <SmallMenu
           anchorEl={anchorEl}
-          menuContent={menuContent}
+          menuContent={
+            <MenuList dense className="py-2">
+              {dropdownTabsData.map((tab, index) => (
+                <ListItem
+                  key={index}
+                  component="a"
+                  value={tab.value}
+                  href={tab.path}
+                  className={classes.MoreTabsListStyle}
+                  onClick={(ev) => {
+                    ev.preventDefault();
+                    setValue(tab.value);
+                    router.push(tab.path, undefined, {
+                      shallow: true,
+                    });
+                    handleClose();
+                  }}
+                >
+                  <ListItemText>{tab.label}</ListItemText>
+                  {tab.value === value ? (
+                    <Typography variant="body2" color="primary">
+                      <CheckIcon fontSize="small" />
+                    </Typography>
+                  ) : null}
+                </ListItem>
+              ))}
+            </MenuList>
+          }
           clickAwayHandler={handleClose}
           isOpen={open}
           boxStyle={{ my: 1 }}
