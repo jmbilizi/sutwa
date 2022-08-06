@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   MoreTabStyle: {
     paddingBlock: "12px",
     marginBlock: "3px",
+    cursor: "pointer",
     "&:hover": {
       backgroundColor: "#f1f1f1",
       borderRadius: "5px",
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: "3px solid #556cd6",
     paddingTop: "15px",
     color: "#556cd6",
+    cursor: "pointer",
   },
 
   MoreTabsListStyle: {
