@@ -142,10 +142,13 @@ export const TabsWithLink = ({
   const [isDropDownTab, setIsDropDownTab] = React.useState(false);
 
   React.useEffect(() => {
-    const handleResize = () => {
+    const getScreenSize = () => {
       setScreenWidthSize(window.innerWidth);
     };
-    window.addEventListener("resize", handleResize);
+
+    getScreenSize();
+
+    window.addEventListener("resize", getScreenSize);
 
     //handle Tabs data
     const sm = 576;
@@ -184,7 +187,7 @@ export const TabsWithLink = ({
     }
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", getScreenSize);
     };
   }, [screenWidthSize, tabContext.tabs, value]);
 
