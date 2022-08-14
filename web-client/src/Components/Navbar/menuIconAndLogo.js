@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import Tooltip from "../Tooltip";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   logo: {
     borderImage:
       "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",

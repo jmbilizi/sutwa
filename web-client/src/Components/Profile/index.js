@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Divider,
-  MenuList,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { MenuList, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import {
   ThumbUp as LikeIcon,
   MoreHoriz as MoreHorizIcon,

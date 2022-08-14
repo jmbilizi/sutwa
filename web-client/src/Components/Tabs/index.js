@@ -155,32 +155,32 @@ export const TabsWithLink = ({
     const md = 768;
 
     if (screenWidthSize <= sm) {
-      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 2));
-      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 2));
+      setVisibleTabsData(tabContext.tabs.filter((_obj, i) => i <= 2));
+      setDropdownTabsData(tabContext.tabs.filter((_obj, i) => i > 2));
       setIsDropDownTab(
         Boolean(
           tabContext.tabs
-            .filter((o, i) => i > 2)
+            .filter((_obj, i) => i > 2)
             .find((tab) => tab.value === value)
         )
       );
     } else if (screenWidthSize <= md) {
-      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 4));
-      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 4));
+      setVisibleTabsData(tabContext.tabs.filter((_obj, i) => i <= 4));
+      setDropdownTabsData(tabContext.tabs.filter((_obj, i) => i > 4));
       setIsDropDownTab(
         Boolean(
           tabContext.tabs
-            .filter((o, i) => i > 4)
+            .filter((_obj, i) => i > 4)
             .find((tab) => tab.value === value)
         )
       );
     } else {
-      setVisibleTabsData(tabContext.tabs.filter((o, i) => i <= 5));
-      setDropdownTabsData(tabContext.tabs.filter((o, i) => i > 5));
+      setVisibleTabsData(tabContext.tabs.filter((_obj, i) => i <= 5));
+      setDropdownTabsData(tabContext.tabs.filter((_obj, i) => i > 5));
       setIsDropDownTab(
         Boolean(
           tabContext.tabs
-            .filter((o, i) => i > 5)
+            .filter((_obj, i) => i > 5)
             .find((tab) => tab.value === value)
         )
       );
