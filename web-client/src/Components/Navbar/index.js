@@ -21,7 +21,6 @@ import { makeStyles, useTheme } from "@mui/styles";
 
 //custom components
 import Tooltip from "../Tooltip";
-import { searchBar } from "./searchBar";
 import { drawerContent } from "./drawerContent";
 import {
   AccountMenuContent,

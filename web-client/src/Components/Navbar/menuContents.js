@@ -21,44 +21,49 @@ import {
 import { makeStyles, useTheme } from "@mui/styles";
 import Link from "next/link";
 
-export const AccountMenuContent = ({ closeMenu }) => {
-  const useStyles = makeStyles((theme) => ({
-    sutwaBtn1: {
-      textDecoration: "none",
-      fontSize: "20px",
+const useStyles = makeStyles((_them) => ({
+  hover: {
+    "&:hover": {
+      backgroundColor: "#f1f1f1",
+      borderRadius: "5px",
+    },
+  },
+  sutwaBtn1: {
+    textDecoration: "none",
+    fontSize: "20px",
 
-      border: "3px solid",
-      borderImage:
+    border: "3px solid",
+    borderImage:
+      "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",
+    borderImageSlice: 1,
+    "&:hover": {
+      backgroundImage:
         "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",
-      borderImageSlice: 1,
-      "&:hover": {
-        backgroundImage:
-          "linear-gradient(to right, #5bc0de 5%, #d9534f 25%, #5cb85c 50%, #f0ad4e 70%, #0275d8 95%)",
-      },
     },
-    sutwaBtn2: {
-      borderRadius: "500px",
-      textDecoration: "none",
-      fontSize: "20px",
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-      },
+  },
+  sutwaBtn2: {
+    borderRadius: "500px",
+    textDecoration: "none",
+    fontSize: "20px",
+    "&:hover": {
+      backgroundColor: "#f1f1f1",
     },
-    sutwaApps: {
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-      },
+  },
+  sutwaApps: {
+    "&:hover": {
+      backgroundColor: "#f1f1f1",
     },
-    footerLinks: {
-      "&:hover": {
-        textDecoration: "underline",
-        cursor: "pointer",
-      },
+  },
+  footerLinks: {
+    "&:hover": {
+      textDecoration: "underline",
+      cursor: "pointer",
     },
-  }));
+  },
+}));
+export const AccountMenuContent = ({ closeMenu }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
-
   return (
     <React.Fragment>
       <div className="px-3">
@@ -131,14 +136,6 @@ export const AccountMenuContent = ({ closeMenu }) => {
 };
 
 export const GeneralNotificationsMenuContent = () => {
-  const useStyles = makeStyles((theme) => ({
-    hover: {
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-        borderRadius: "5px",
-      },
-    },
-  }));
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -159,14 +156,6 @@ export const GeneralNotificationsMenuContent = () => {
 };
 
 export const MessageNotificationsMenuContent = () => {
-  const useStyles = makeStyles((them) => ({
-    hover: {
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-        borderRadius: "5px",
-      },
-    },
-  }));
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
@@ -186,14 +175,6 @@ export const MessageNotificationsMenuContent = () => {
 };
 
 export const SutwAppsMenuContent = ({ closeMenu }) => {
-  const useStyles = makeStyles((them) => ({
-    hover: {
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-        borderRadius: "5px",
-      },
-    },
-  }));
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
@@ -278,14 +259,6 @@ export const SutwAppsMenuContent = ({ closeMenu }) => {
 };
 
 export const CreateMenuContent = () => {
-  const useStyles = makeStyles((them) => ({
-    hover: {
-      "&:hover": {
-        backgroundColor: "#f1f1f1",
-        borderRadius: "5px",
-      },
-    },
-  }));
   const theme = useTheme();
   const classes = useStyles(theme);
 

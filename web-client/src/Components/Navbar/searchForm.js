@@ -6,7 +6,6 @@ import {
 } from "@mui/icons-material";
 // custom components
 import Tooltip from "../Tooltip";
-// import { IconButton, Grid } from "@material-ui/core";
 
 function backNavItems() {
   document.getElementById("search-content").style.display = "none";
