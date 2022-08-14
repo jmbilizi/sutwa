@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   MoreTabStyle: {
-    paddingBlock: "12px",
+    paddingBlock: "14px",
     marginBlock: "3px",
     cursor: "pointer",
     "&:hover": {
@@ -51,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   MoreTabStyleTabInDropDown: {
-    borderBottom: "3px solid #556cd6",
-    paddingTop: "15px",
-    color: "#556cd6",
-    cursor: "pointer",
+    textTransform: "none",
+    "&:hover": {
+      color: "unset !important",
+    },
   },
 
   MoreTabsListStyle: {
@@ -237,33 +237,48 @@ export const TabsWithLink = ({
                 {visibleTabsData.map((tab, index) => (
                   <Tab
                     key={index}
-                    component="a"
-                    label={tab.label}
-                    value={tab.value}
-                    href={tab.path}
-                    className={classes.customTabStyle}
                     onClick={(event) => {
                       event.preventDefault();
                       router.push(tab.path, undefined, { shallow: true });
                     }}
+                    label={
+                      <Link href={tab.path} passHref>
+                        <Typography>{tab.label}</Typography>
+                      </Link>
+                    }
+                    value={tab.value}
+                    className={classes.customTabStyle}
                   />
                 ))}
-                <span
-                  onClick={(event) => {
-                    event.preventDefault();
-                    return handleClick(event);
-                  }}
-                  className={
-                    isDropDownTab
-                      ? `${classes.MoreTabStyleTabInDropDown} ps-3 pe-2`
-                      : `${classes.MoreTabStyle} ps-3 pe-2`
-                  }
-                >
-                  <small>
-                    More
-                    <ArrowDropDownIcon sx={{ marginTop: 0 }} />
-                  </small>
-                </span>
+                {isDropDownTab ? (
+                  <Tab
+                    label={
+                      <Typography>
+                        More
+                        <ArrowDropDownIcon sx={{ marginTop: 0 }} />
+                      </Typography>
+                    }
+                    value={value}
+                    className={`${classes.MoreTabStyleTabInDropDown} ps-3 pe-2`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      return handleClick(event);
+                    }}
+                  />
+                ) : (
+                  <Typography
+                    onClick={(event) => {
+                      event.preventDefault();
+                      return handleClick(event);
+                    }}
+                    className={`${classes.MoreTabStyle} ps-3 pe-2`}
+                  >
+                    <Typography>
+                      More
+                      <ArrowDropDownIcon sx={{ marginTop: 0 }} />
+                    </Typography>
+                  </Typography>
+                )}
                 {more ? more : null}
               </Tablist>
             </Box>
@@ -288,28 +303,27 @@ export const TabsWithLink = ({
           menuContent={
             <MenuList dense className="py-2">
               {dropdownTabsData.map((tab, index) => (
-                <ListItem
-                  key={index}
-                  component="a"
-                  value={tab.value}
-                  href={tab.path}
-                  className={classes.MoreTabsListStyle}
-                  onClick={(ev) => {
-                    ev.preventDefault();
-                    setValue(tab.value);
-                    router.push(tab.path, undefined, {
-                      shallow: true,
-                    });
-                    handleClose();
-                  }}
-                >
-                  <ListItemText>{tab.label}</ListItemText>
-                  {tab.value === value ? (
-                    <Typography variant="body2" color="primary">
-                      <CheckIcon fontSize="small" />
-                    </Typography>
-                  ) : null}
-                </ListItem>
+                <Link key={index} href={tab.path} passHref>
+                  <ListItem
+                    value={tab.value}
+                    className={classes.MoreTabsListStyle}
+                    onClick={(ev) => {
+                      ev.preventDefault();
+                      setValue(tab.value);
+                      router.push(tab.path, undefined, {
+                        shallow: true,
+                      });
+                      handleClose();
+                    }}
+                  >
+                    <ListItemText>{tab.label}</ListItemText>
+                    {tab.value === value ? (
+                      <Typography variant="body2" color="primary">
+                        <CheckIcon fontSize="small" />
+                      </Typography>
+                    ) : null}
+                  </ListItem>
+                </Link>
               ))}
             </MenuList>
           }

@@ -20,27 +20,27 @@ const ClubProfilepage = ({ clubId }) => {
 
 export default ClubProfilepage;
 
-export function getStaticProps({ params: { clubId } }) {
-  return {
-    props: {
-      clubId,
-    },
+export async function getStaticPaths() {
+  const clubIds = () => {
+    let ids = [];
+    for (let i = 0; i < clubs.length; i++) {
+      ids.push(clubs[i].id);
+    }
+    return ids;
   };
-}
 
-export const clubIds = () => {
-  let ids = [];
-  for (let i = 0; i < clubs.length; i++) {
-    ids.push(clubs[i].id);
-  }
-  return ids;
-};
-
-export function getStaticPaths() {
   return {
     paths: clubIds().map((clubId) => ({
       params: { clubId: clubId.toString() },
     })),
     fallback: true,
+  };
+}
+
+export function getStaticProps({ params: { clubId } }) {
+  return {
+    props: {
+      clubId,
+    },
   };
 }
