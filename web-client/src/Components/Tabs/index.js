@@ -137,9 +137,16 @@ export const TabsWithLink = ({
 }) => {
   const [value, setValue] = React.useState(tabDefaultValue);
   const [screenWidthSize, setScreenWidthSize] = React.useState(undefined);
-  const [visibleTabsData, setVisibleTabsData] = React.useState([]);
-  const [dropdownTabsData, setDropdownTabsData] = React.useState([]);
+  const [visibleTabsData, setVisibleTabsData] = React.useState(
+    tabContext.tabs.filter((_obj, i) => i <= 5)
+  );
+  const [dropdownTabsData, setDropdownTabsData] = React.useState(
+    tabContext.tabs.filter((_obj, i) => i > 5)
+  );
   const [isDropDownTab, setIsDropDownTab] = React.useState(false);
+  //Menu related staff
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   React.useEffect(() => {
     const getScreenSize = () => {
@@ -189,11 +196,7 @@ export const TabsWithLink = ({
     return () => {
       window.removeEventListener("resize", getScreenSize);
     };
-  }, [screenWidthSize, tabContext.tabs, value]);
-
-  //Menu related staff
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  }, [tabContext, value, screenWidthSize]);
 
   const handleClick = (event) => {
     event.preventDefault();
