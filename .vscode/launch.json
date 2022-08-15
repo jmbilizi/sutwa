@@ -5,14 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Client Web App",
+      "name": "Debug WebApp",
+      "type": "node-terminal",
       "request": "launch",
-      "type": "pwa-chrome",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/src",
-      "skipFiles": [
-        "node_modules/**/*.js"
-      ]
+      "cwd": "${workspaceFolder}/web-client",
+      "command": "npm run dev",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
     },
     {
       "name": "sutwa-account-service",
@@ -29,7 +31,7 @@
   "compounds": [
     {
       "name": "Debug All",
-      "configurations": ["sutwa-account-service", "Client Web App"]
+      "configurations": ["sutwa-account-service", "Debug WebApp"]
     }
   ]
 }

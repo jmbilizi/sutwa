@@ -3,11 +3,11 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "start",
-			"path": "web-client",
+			"script": "debug",
+			"path": "micro-services/account-service",
 			"problemMatcher": [],
-			"label": "npm: start - web-client",
-			"detail": "react-scripts start"
+			"label": "npm: debug - micro-services/account-service",
+			"detail": "npm start"
 		}
 	]
 }
