@@ -312,10 +312,10 @@ export const TabsWithLink = ({
                     className={classes.MoreTabsListStyle}
                     onClick={(ev) => {
                       ev.preventDefault();
-                      setValue(tab.value);
                       router.push(tab.path, undefined, {
                         shallow: true,
                       });
+                      setValue(tab.value);
                       handleClose();
                     }}
                   >
