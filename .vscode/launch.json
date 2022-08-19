@@ -17,10 +17,10 @@
       }
     },
     {
-      "name": "sutwa-account-service",
+      "name": "account-service",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/Sutwa.Microservices/sutwa-account-service",
+      "cwd": "${workspaceFolder}/micro-services/account-service",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run-script",
@@ -31,7 +31,7 @@
   "compounds": [
     {
       "name": "Debug All",
-      "configurations": ["sutwa-account-service", "Debug WebApp"]
+      "configurations": ["account-service", "Debug WebApp"]
     }
   ]
 }
