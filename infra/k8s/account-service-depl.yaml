@@ -1,30 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: account-service-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: account-service
   template:
     metadata:
       labels:
-        app: auth
+        app: account-service
     spec:
       containers:
-        - name: auth
-          image: auth
+        - name: account-service
+          image: account-service:latest
+          imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: account-service-srv
 spec:
   selector:
-    app: auth
+    app: account-service
   ports:
-    - name: auth
+    - name: account-service
       protocol: TCP
       port: 3000
       targetPort: 3000

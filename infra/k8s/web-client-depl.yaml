@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: web-client
-          image: sutwa/web-client
+          image: web-client:latest
+          imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service

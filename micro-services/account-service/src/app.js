@@ -48,11 +48,11 @@ app.use(resetPasswordRouter);
 // app.use(googleLoginRouter);
 // app.use(facebookLoginRouter);
 
-app.get("/", (req, res) =>
+app.get("/", (_req, res) =>
   res.status(200).send("Welcome to sutwa.com Auth API")
 );
 
-app.all("*", async (req, res, next) => {
+app.all("*", async (req, _res, next) => {
   const err = new NotFoundError(req.path);
   next(err);
 });
