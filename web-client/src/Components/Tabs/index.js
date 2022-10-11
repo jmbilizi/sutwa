@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import {
   Tab,
   Box,
@@ -17,8 +18,10 @@ import {
 } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Jambotron from "../../Components/Jambotron";
 import { SmallMenu } from "../Menu/smallMenu.js";
+const Jambotron = dynamic(() => import("../../Components/Jambotron"), {
+  ssr: false,
+});
 
 const useStyles = makeStyles((theme) => ({
   customTabStyle: {
